@@ -13,6 +13,6 @@ public class IfEx03 {
 		}else {
 			System.out.println("입력하신 수는 음수입니다.");
 		}
-		
+
 	}
 }
