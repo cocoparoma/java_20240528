@@ -13,16 +13,15 @@ public class MethodEx02 {
 		Scanner sc = new Scanner(System.in);
 		int a[] = new int[sc.nextInt()];
 		for (int i = 0; i < a.length; i++) {
-			a[i] = Random();
+			a[i] = Random(9, 1);
 		}
 
 		System.out.println(Arrays.toString(a));
 	}// main done
 
-	static int Random() {
-		int max = 9;
-		int min = 1;
+	static int Random(int max,  int min) {
 		return (int) (Math.random() * (max - min + 1) + min);
+		//Math.random()  * (9) + 1
 	}// random done
 
 }// class done

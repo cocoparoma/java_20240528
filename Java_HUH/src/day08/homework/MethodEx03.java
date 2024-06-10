@@ -43,7 +43,7 @@ public class MethodEx03 {
 			for (int j = 1; j + i < a.length; j++) {
 				if (a[i] == a[i + j]) {
 					a[i] = Random();
-					j = 0;
+					j = 1;
 					i = 0;
 				}
 			}

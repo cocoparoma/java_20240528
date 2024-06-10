@@ -1,7 +1,6 @@
 package day08.homework;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class MethodEx01 {
 
