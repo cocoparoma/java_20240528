@@ -19,10 +19,10 @@ public class PhoneEx01 {
 //DecimalFormat 으로 3,4,4 형식으로 받아주고
 //StringTokenizer 으로 토큰식으로 끊어서 저장해주자
 //MessageFormat 으로 출력해주면 오케이
-class Contact implements Comparator<Contact>{
+class Contact1 implements Comparator<Contact>{
 	String nameString, phoneString;
 
-	public Contact(String nameString, String phoneString) {
+	public Contact1(String nameString, String phoneString) {
 		this.nameString = nameString;
 		this.phoneString = phoneString;
 	}
