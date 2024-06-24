@@ -11,19 +11,17 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import javax.swing.text.html.CSS;
-
 public class MemberService implements MemberInterface {
 	SchedulerService ss = new SchedulerService();
 	Scanner sc = new Scanner(System.in);
-	List<Member> list = new ArrayList<Member>();
+	public List<Member> list = new ArrayList<Member>();
 	String file = "src/day18/homework/member.txt";
 
 	@Override
 	public void init() {
 		load(file);
 		while (true) {
-		System.out.print("메뉴 \n[1]회원 관리\n[2]일정관리\n[3]종료\n>>");
+		System.out.print("메뉴 \n[1]회원 관리\n[2]일정 관리\n[3]종료\n>>");
 
 		String M = sc.nextLine();
 
@@ -68,8 +66,14 @@ public class MemberService implements MemberInterface {
 	public void updateMember() {
 		System.out.print("[아이디] : ");
 		String id = sc.nextLine();
-
-		List<Member> tmpList = list.stream().filter(p->p.getId().contains(id)).collect(Collectors.toList());
+		
+		List<Member> tmpList = null;
+		
+		if(id == "") {
+			tmpList = list;
+		} else {
+			 tmpList = list.stream().filter(p->p.getId().contains(id)).collect(Collectors.toList());
+		}
 		
 		if (tmpList.size() == 0) System.out.println("존재하지 않는 아이디");
 		if (tmpList.size() == 0) return;
@@ -86,24 +90,18 @@ public class MemberService implements MemberInterface {
 				System.out.println("잘못된 번호입니다.");
 				return;
 			}
+			System.out.print("[닉네임] : ");
+			String nickname = sc.nextLine();
+			if(list.stream().filter(p->p.getId().contains(nickname)).count() >= 1) {
+				System.out.println("중복된 아이디 입니다.");
+				return;
+			}
+			tmpList.get(idx).setName(nickname);
+			
 		} catch (Exception e) {
 			System.out.println("숫자만 입력해 주세요.");
 			return;
 		}
-		//변경할 닉네임
-		System.out.print("[닉네임] : ");
-		String nickname = sc.nextLine();
-		if(list.stream().filter(p->p.getId().contains(nickname)).count() >= 1) {
-			System.out.println("중복된 아이디 입니다.");
-			return;
-		}
-		Member jamkkanMember = tmpList.get(idx);
-		List<Member> jamsiList = list;
-//		jamsiList.set(idx, new Member(jamsiList.indexOf(jamsiList), nickname));
-		jamsiList.remove(idx);
-		jamsiList.remove(jamkkanMember);
-		list = jamsiList;
-		
 		
 	}
 
@@ -116,10 +114,9 @@ public class MemberService implements MemberInterface {
 			return;
 		}
 		List<Member> tmpList = list.stream().filter(p->p.getId().contains(id)).collect(Collectors.toList());
-		for (int i = 0; i < tmpList.size(); i++) {
-			System.out.println("[" + (i + 1) + "]" + tmpList.get(i));
-		}
+		for (int i = 0; i < tmpList.size(); i++)  System.out.println("[" + (i + 1) + "]" + tmpList.get(i));
 		System.out.print(">>");
+		
 		int idx =0;
 		try {
 			idx = sc.nextInt() - 1;
