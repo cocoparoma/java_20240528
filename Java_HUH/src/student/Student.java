@@ -1,5 +1,6 @@
 package student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,9 +10,13 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-class Student {
+class Student implements Serializable{
 
-    String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 123L;
+	String name;
     int grade;
     int classNumber;
     int number;
