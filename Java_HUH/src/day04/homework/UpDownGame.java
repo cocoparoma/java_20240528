@@ -1,4 +1,4 @@
-package day4.homework;
+package day04.homework;
 import java.util.Scanner;
 public class UpDownGame {
 
