@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 태그</title>
+</head>
+<body>
+    <!--img src="경로" alt="불러오지 못했을 때 설명문구" width="너비" height="높이" + 단위 대신 px, auto로 지정하면 비율이 유지 됨-->
+    <img src="https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"/>
+    <img width = "200px" height="200px" src = "https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"/>
+    <img width = "200px" height="auto" src = "https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"/>
+
+
+    <!--요소의 영역을 분할해서 링크를 걸 때 사용-->
+    <!--영역을 분할 할 요소에 usemap 속성을 이용해서 지정, 값으로 #+map의 name의 속성명-->
+
+    <img usemap="#imgmap" width = "500px" height="500px" src = "https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"/>
+
+    <!--area : 영역을 지정, 속성 shape, coords -->
+    <!--shape : rect, circle, poly 등 도형의 종류 선택-->
+    <!--coords : 좌표. 도형에 맞게 좌표를 입력.x좌표 y좌표 순으로-->
+    <!--rect : 좌측 상단 좌표, 우측 하단 좌표 순. x1, y2, x2, y2-->
+    <!--circle : 중심점, 반지름 순. x, y, r-->
+    <!--poly : 좌표 여러개를 작성하여 이어줌, 처음 좌표와 마지막 좌표가 동일 해야함, 아니라면 마지막 좌표가 자동으로 추가된다-->
+    <!--href : 연결할 링크 주소-->
+    <!--alt : 대체 문자-->
+    <!--media : 링크 페이지 최적화 미디어 지정-->
+    <!--rel : 현재 페이지, 링크 페이지 관계지정-->
+    <!--target : 새로운 창이 어디에 열릴지 지정-->
+
+    <map name="imgmap">
+        <area shape="rect" coords="0,0,250,250" href="https://naver.com" alt="네이버">
+        <area shape="circle" coords="375,125,125" href="https://google.com" alt="구글">
+        <area shape="poly" coords="0,250,250,500,500,250,500,500,250,500,0,500,0,250" href="https://www.youtube.com/" alt="유튜브">
+    </map>
+
+    <!--audio : 음악을 재생하는 태그 / 속성 : controls : 컨트롤러를 보여줌, autoplay : 자동 재생, 브라우저 설정에 따라 갈림, loop : 반복-->
+    <!--... ... preload : 음원을 재생전에 다운로드 할지 말지 결정(none 받지 않음, metadata : 메타데이터만 받음, auto : 받음)-->
+
+    <!--video : 비디오 재생을 위한 태그, audio 태그를 사용 가능함,poster : 재생전 보여줄 이미지, width/height : 요소의 너비/높이-->
+    <!-- -->
+
+    <video  width="800" height="auto" controls loop preload="auto" src="../video/program.mp4"></video>
+</body>
+</html>

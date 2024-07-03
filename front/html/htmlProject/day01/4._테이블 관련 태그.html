@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠쿠쿠쿠쿠ㅜ쿠쿠쿠쿠</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+          <tr>제목1</tr>
+          <tr>제목2</tr>
+          <tr>제목3</tr>
+        </tr> 
+        <tr>
+          <tr>내용1</tr>
+          <tr>내용2</tr>
+          <tr>내용3</tr>
+        </tr> 
+      </table>
+      <br>
+      <!--table 구조를 위한 태그-->
+      <!--thead, tbody, tfoot-->
+      <!--필수는 아니지만 테이블 구조를 나타낼 때 사용 위 순서대로 배치됨 (뒤의 둘은 위치와 상관 없이)-->
+      <!--thead : 테이블의 제목 행에 해당 , 위치가 처음이어야 함-->
+      <!--tbody : 테이블의 내용에 해당, 대부분의 행들이 여기에 속함-->
+      <!--tfood : 테이블의 끝에 해당, 평균이나 내용을 종합할 때 사용-->
+
+
+      <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2</td>
+                <td>게시글 공지</td>
+                <td>운영자</td>
+                <td>15</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>없음</td>
+                <td>없음</td>
+                <td>없음</td>
+                <td>없음</td>
+            </tr>
+        </tfoot>
+      </table>
+
+
+
+      <figure>
+        <table border="1">
+            <colgroup>
+                <col style="background-color: yellow;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>게시글 공지</td>
+                    <td>운영자</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>안녕하세요</td>
+                    <td>qq123</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>없음</td>
+                    <td>없음</td>
+                    <td>없음</td>
+                    <td>없음</td>
+                </tr>
+            </tfoot>
+            <caption>게시글1</caption>
+          </table>
+          <figcaption>게시글2</figcaption>
+      </figure>
+      <!--figure : 요소를 설명하기 위한 태그, figcaption과 함깨 사용-->
+      <!--figcaption : 요소 앞에 있으면 요소 위에 설명을 작성, 뒤에 있으면 뒤에 설명을 작성-->
+      <!--caption : 표를 설명하는 태그, 상단 가운데 정렬-->
+      <!--colgroup : col 태그들을 모아놓는 태그,열에 스타일을 적용하지 않아도 열 개수만큼 cal 태그를 추가해야함-->
+      <!--col (style) : 열의 스타일을 적용하는 태그-->
+
+      <!--colspan : 속성, 열병합, 죄우로 합침-->
+      <!--rowspan : 속성, 행병합, 위아래 합침-->
+
+      <table border="1">
+        <caption>HTML 과목 성적표</caption>
+        <colgroup>
+            <col style="background-color: aqua;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>과목명</th>
+                <th>이름</th>
+                <th>성적</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">HTML</td>
+                <td>홍길동</td>
+                <td>100</td>
+            </tr>
+            <tr>
+
+                <td>김철수</td>
+                <td>100</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">평균</td>
+
+                <td>100</td>
+            </tr>
+        </tfoot>
+
+
+      </table>
+
+      
+</body>
+</html>
