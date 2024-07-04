@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택자 예제</title>
+    <style>
+      .menu-link {
+        /* color: rgb(185, 35, 35); */
+      }
+      nav .menu-link {
+        /* color: rgb(185, 35, 35); */
+      }
+      .first{
+        /* color: red; */
+      }
+      div .menu-item+.menu-item>.menu-link{
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul class="menu-list">
+        <li class="menu-item first"><span class="menu-link">메뉴1</span></li>
+        <li class="menu-item"><span class="menu-link">메뉴2</span></li>
+        <li class="menu-item"><span class="menu-link">메뉴3</span></li>
+      </ul>
+    </nav>
+    <div>
+      <ul class="menu-list">
+        <li class="menu-item first"><span class="menu-link">메뉴1</span></li>
+        <li class="menu-item"><span class="menu-link">메뉴2</span></li>
+        <li class="menu-item"><span class="menu-link">메뉴3</span></li>
+      </ul>
+    </div>
+  </body>
+</html>

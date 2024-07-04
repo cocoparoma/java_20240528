@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <div>당신의 나이는?</div>
+      <div>
+        <select name="age">
+          <OPtion>선택 안함</OPtion>
+          <option value="10">10대</option>
+          <option value="20">20대</option>
+          <option value="30">30대</option>
+          <option value="40" selected>40대</option>
+        </select>
+      </div>
+      <div>
+        <div>좋아하는 동물은?</div>
+        <select name="pet" multiple>
+          <optgroup label="개">
+            <option>불독</option>
+            <option>진돗개</option>
+            <option>보더콜리</option>
+          </optgroup>
+          <optgroup label="고양이">
+            <option>페르시안</option>
+            <option>시암</option>
+            <option>스핑크스</option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <div>도시를 입력하시오</div>
+        <input type="text" name="city" list="cities">
+        <datalist id="cities">
+          <option>서울</option>
+          <option>대전</option>
+          <option>대구</option>
+          <option>울산</option>
+          <option>서산</option>
+        </datalist>
+      </div>
+      <textarea name="content" cols="100" rows="12">123</textarea>
+      <input type="submit" value="전송" />
+      <button type="submit">안녕</button>
+    </form>
+  </body>
+</html>

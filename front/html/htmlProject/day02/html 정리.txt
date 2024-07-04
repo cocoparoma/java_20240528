@@ -1,0 +1,99 @@
+<form> : 서버로 데이터를 전송하는 태그
+- action : 서버로 보낼 주소, 빈 문자열로 하면 현 URL에 데이터를 전송
+- method : 데이터 전송 방식
+-- get : 기본값, url에 데이터를 추가해서 전송 > 데이터가 url에 노출되어 보안x
+--- + url 뒤에 ? 와 함께 사용. name명 = 값&name명 = 값 형태로 데이터를 전송
+-- post : http request에 데이터를 추가해서 전송 => 데이터가 url에 노출 x = 보안o
+-- enctpe : 메소드 속성이 post 일 때 사용 가능. 서버로 데이터를 보낼 때 인코딩 방시 설정
+--- application/x-www-form-urlencoded : 기본값, 서버로 보내기 전 모두 인코딩
+--- multipart/form-data : 모든 문자를 인코딩 하지 않음, 서버에 파일을 전송할 때 사용
+--- text/plain : 공백 문자는 + 로 변환, 나머지는 인코딩 하지 않음
+
+
+<fieldset> :
+- form 태그 안에 요소들을 묶어서 테두리 표시
+<legend>
+- fieldset 태그 안에서 묶인 요소들의 대표 이름을 지정
+
+<input> : form 태그 안에서 사용자로부터 data를 입력받기 위한 태그
+- type : 입력 창의 타입 결정 (text, checkbox, radio ...)
+-- text: 한 줄 텍스트 입력 창
+-- password : 비밀 번호 입력 창
+-- hidden : 사용자에게 보이지는 않지만 값을 넣을 수 있는 창 + 관리자에게 필요한 값을 넣을 때 사용
+-- button : 버튼 생성 + button 태그로 대체 가능
+-- submit : 입력한 데이터를 다른페이지(혹 서버)로 넘기는 기능 + button 태그로 대체 가능
+-- reset : 입력한 내용을 지우는 기능 + button 태그로 대체 가능
+-- file : 파일 입력 양식 출력, form 태그에 enctype을 multipart/formdata, method를 post로 변경해야 전송 가능
+-- image : 이미지 형태 생성 + img 태그로 대체 가능
+-- checkbox : 체크 박스 생성, 다중 선택 가능, name을 같게 해서 활용, 반드시 value를 지정
+-- radio : 라디오 버튼 생성, 여러개 중 하나만 선택할 때 사용, name을 같게 해서 활용
+-- checked : checkbox, radio 에서 초기 디폴트 값을 지정해 주고 싶을 때 사용
+-- color : 색상 선택 양식 출력
+-- date : 년, 월, 일 선택 양식
+-- datetime : 년, 월, 일, 시간 입력할 수 있는 창 출력
+-- datetime-local : 년, 월, 일, 시간 선택 양식 생성
+-- time : 시간 선택 양식 생성
+-- month : 년 월 선택 양식 생성
+-- week : 주 선택 양식 생성
+-- number : 숫자 입력 창 생성
+-- range : 슬라이드 바를 조정하여 범위 내 숫자를 선택할 수 있는 필드
+-- search : 검색어를 입력할 수 있는 텍스트 필드
+-- tel : 전화 번호로 인식
+-- email/url : 이메일/url을 입력함. 값이 있는데 이메일/url 형식에 맞지 않으면 전송하지 않음
+
+- value : input 요소의 기본 값 표시
+- name : input을 구별할 수 있는 명칭(서버에서 값을 구별하기 위해 반드시 요구됨)
+- min/max/step : 최소, 최대, 값의 증감값
+- autocomplete  : 자동완성 기능
+- height/width : 입력 창의 높이와 너비
+- readonly : 읽기 전용 필드, 서버로 값이 전송 됨
+- disabled : 읽기 전용 필드, 서버로 값이 전송되지 않음
+- placeholder : 입력하기 전 안내 문구를 표시, 값이 입력되어 있으면 안내 문구 x
+
+- accept : 파일을 선택할 때 보여지는 파일들의 확장자를 선택하게 하는 속성
+-- audio/* : 음원 파일만 검색
+-- vedio/* : 비디오 파일만 검색
+-- image/* : 이미지 파일만 검색
+-- *.pdf : 확장자가 pdf인 파일들만 검색
+-- image/*, *.pdf : 이미지 또는 확장자가 pdf인 파일들만 검색
+
+- multple : 여러 파일을 동시에 올림
+- autofocus : 입력 창 커서 표시
+- required : 필수 입력 필드 지정, 지정된 알림이 보임 (중요 : 안이쁨)
+- list : <datalist>의 옵션 값을 <input> 안에 나열
+- maxlength : 사용자가 입력할 수 있는 글자수 제한
+- size : 화면에서 표시하는 글자 수
+- minlength : 최소 입력 즐자 (최신 크롬, 안드로이드만 지원)
+
+<label> : 요소에 레이블을 붙이는 태그, 레이블을 클릭했을 때 해당 레이블과 연결된 입력창을 선택할 때 사용
+- input : label 태그 안에 배치 할 수 있음 + input태그에 id를 추가하고 label 태그에 for속성을 통해 활용
+- for : 
+
+<select> : 지정된 값중 하나를 선택할 때 사용, option 태그가 필수로 필요하고 optgroup은 선택 가능
+- size : 화면에 표시될 항목 개수 지정
+- multiple : 여러 항목 선택 지정, ctrl 누른 상태에서 선택
+
+<option> : 선택하는 옵션값을 제공
+- value : 옵션 선택시 넘겨줄 값, 없으면 태그 사이 값을 전송
+- selected : 기본 디폴트 값 지정
+
+<optgroup> : 옵션을 여러개 묶음
+- label : 이름을 붙여줌
+
+<datalist> : 지정된 값들 중에서 입력할 때 사용, option, input과 함께 사용, id를 지정하고 input속성에서 list로 id를 받아와 속성값을 보게할 수있음
+- size : 화면에 표시될 항목 개수 지정
+- multiple : 여러 항목 선택 지정, ctrl 누른 상태에서 선택
+
+<textarea> : 여러 줄의 문자열 입력, 태그 사이값이 기본 값
+- cols : 너비
+- rows : 높이
+
+<button> : 버튼 태그로, input의 여러 버튼을 대체, 쌍 태그로 태그 안에 문자열로 버튼을 나타낼 수 있음 + tpye를 생략하면 submit
+
+시맨틱 태그 = div 태그와 같음, 페이지 구조를 쉽게 파악 가능, 어느 장치에서도 똑같이 문서 해석이 가능
+<header> : 머리말
+<nav> : 다른 사이트나 페이지로 이동하는 태그, 종속 x
+<section> : 주제별로 묶음 <section>안에 <section>을 넣을 수 있음, article을 묶어줌
+<article> : 웹 페이지 내용, 다른 곳으로 배포, 재 사용 가능, 검색 로봇은 이 태그가 사용된 곳을 배포할 수 있는 콘텐츠로 인식
+<aside> : 사이드 바, 기타내용, 광고
+<footer> : 웹 페이지의 맨 아래 위치하며 회사 소개, 저작권 등을 표시하는게 대표적
