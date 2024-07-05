@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문단 스타일</title>
+    <style>
+        .direction1{
+            direction: ltr;
+        }
+        .direction2{
+            direction: rtl;
+        }
+        .align1{text-align: left;}
+        .align2{text-align: right;}
+        .align3{text-align: center;}
+        .align4{text-align: justify;}
+        .align5{text-align: center;}
+        .align2-1{text-align: justify;
+        text-justify: auto;}
+        .align2-2{text-align: center;}
+        .align2-3{text-align: right;}
+        .palign{text-align: justify;
+            text-justify: distribute;}
+            /* justify는 현제 파이어폭스 외에 지원하지 않음 */
+        .ind1{
+            text-indent: 100px;
+        }
+        .ind2{
+            text-indent: -20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="direction">
+        <div class="direction1">왼쪽에서 오른쪽으로</div>
+        <div class="direction2">오른쪽에서 왼쪽으로</div>
+    </div>
+    <div class="align">
+        <div class="align1" style="background-color: yellow;">왼쪽</div>
+        <div class="align2" style="background-color: aqua;">오른쪽</div>
+        <span class="align3">센터</span>
+        <div class="align4">양쪽</div>
+        <img class="aling5" width="100px" height="auto" src="https://media.istockphoto.com/id/1997712423/ko/%EC%82%AC%EC%A7%84/seoul-tower-in-spring-with-cherry-blossom-tree-in-full-bloom-south-korea.jpg?s=1024x1024&w=is&k=20&c=ZFmRlMrjkRZo7xN_NuKHDImq7nlHeFa07QZDKDFYVHU=" alt="">
+    </div>
+
+    <div class="align2-1">
+        div 테그는 block 태그인지라 가운데 정렬이 안된다 허나 글자만큼은 태그에 영향을받게된다
+    </div>
+    <div class="align2-2">
+        div 테그는 block 태그인지라 가운데 정렬이 안된다 허나 글자만큼은 태그에 영향을받게된다
+    </div>
+    <div class="align2-3">
+        div 테그는 block 태그인지라 가운데 정렬이 안된다 허나 글자만큼은 태그에 영향을받게된다
+    </div>
+    <hr>
+    <div>
+        <div class="ind">text-index num단위 : 문장을 들여쓰기 하는 속성 기분</div><hr>
+        <div class="ind1">text-index num단위 : 문장을 들여쓰기 하는 속성</div>
+        <div class="ind2">text-index num단위 : 문장을 들여쓰기 하는 속성</div>
+    </div>
+
+</body>
+</html>

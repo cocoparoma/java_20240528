@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>display</title>
+    <style>
+      .div span {
+        display: block;
+      }
+      .span div {
+        display: inline;
+      }
+      .box1{
+        display: block;
+        background-color: yellow;
+        width: 300px;
+      }
+      .box2{
+        display: inline;
+        background-color: yellow;
+        width: 300px;
+      }
+      .box3{
+        display: inline-block;
+        background-color: yellow;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div">
+      <span>스팬태그입니다.</span>
+      <span>스팬태그입니다.</span>
+      <span>스팬태그입니다.</span>
+    </div>
+    <div class="span">
+      <div>div태그 입니다.</div>
+      <div>div태그 입니다.</div>
+      <div>div태그 입니다.</div>
+    </div>
+    <div class="box1">block</div>1<hr>
+    <div class="box2">inline</div>2<hr>
+    <div class="box3">inline-block</div>3
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>택스트 스타일</title>
+    <style>
+      .box1 {
+        color: rgba(255, 0, 0, 0.4);
+      }
+      .color1 {
+        color: red;
+      }
+      .color2 {
+        color: rgb(10, 155, 34);
+      }
+      .color3 {
+        color: rgb(108, 138, 25);
+        text-decoration: underline;
+      }
+      .text-decoration1 {
+        text-decoration: none;
+      }
+      .text-decoration2 {
+        text-decoration: underline;
+      }
+      .text-decoration3 {
+        text-decoration: line-through;
+      }
+      .text-decoration4 {
+        text-decoration: overline;
+      }
+      .go_naver {
+        text-decoration: none;
+      }
+      .go_naver:hover {
+        text-decoration: underline;
+      }
+      .text-transform1 {
+        text-transform: none;
+      }
+      .text-transform2 {
+        text-transform: capitalize;
+      }
+      .text-transform3 {
+        text-transform: uppercase;
+      }
+      .text-transform4 {
+        text-transform: lowercase;
+      }
+      [class^=text-shadow]{
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 3;
+      }
+      .text-shadow1{
+        text-shadow: 3px 5px 3px red;
+      }
+      .text-shadow2{
+        text-shadow: -11px -51px 2px rgb(53, 158, 50);
+      }
+      .text-shadow3{
+        text-shadow: 7px 7px 5px gray;
+      }
+      .text-shadow4{
+        text-shadow: 150px 0px gray;
+      }
+      .text-shadow5{
+        text-shadow: 3px 3px 13px black;
+        color: white;
+      }
+      .text-shadow6{
+        text-shadow: 0px 0px 13px black;
+        color: white;
+      }
+      .text-shadow7{
+        text-shadow: 5px 5px 7px blue;
+        color: white;
+      }
+      .white-space1{
+        white-space: normal;
+      }
+      .white-space2{
+        white-space: nowrap;
+      }
+      .white-space3{
+        white-space: pre;
+      }
+      .white-space4{
+        white-space: pre-line;
+      }
+      .white-space5{
+        white-space: pre-wrap;
+      }
+      .spacing1{
+        color: red;
+      }
+      .spacing2{
+        letter-spacing: -3px;
+      }
+      .spacing3{
+        word-spacing: 30px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="color1">안녕하세요</div>
+      <div class="color2">안녕하세요</div>
+      <div class="color3">안녕하세요</div>
+      <div class="box1">테스트</div>
+    </div>
+
+    <div>
+      <div class="text-decoration1">안녕하세요</div>
+      <div class="text-decoration2">안녕하세요</div>
+      <div class="text-decoration3">안녕하세요</div>
+      <div class="text-decoration4">안녕하세요</div>
+    </div>
+
+    <div>
+      <a class="go_naver" href="http://naver.com">네이버로 이동</a>
+    </div>
+
+    <div>
+      <div class="text-transform1">abcd</div>
+      <div class="text-transform2">abcd</div>
+      <div class="text-transform3">abcd</div>
+      <div class="text-transform4">abcd</div>
+    </div>
+
+    <div class="sh">
+        <div class="text-shadow1">Let's go!</div>
+        <div class="text-shadow2">Let's go!</div>
+        <div class="text-shadow3">Let's go!</div>
+        <div class="text-shadow4">Let's go!</div>
+        <div class="text-shadow5">Let's go!</div>
+        <div class="text-shadow6">Let's go!</div>
+        <div class="text-shadow7">Let's go!</div>
+    </div>
+
+    <div>
+        <div class="white-space1">안녕하세요? 제 이름은 홍길동입니다 만나서 반가워요</div>
+        <div class="white-space2">안녕하세요? 제 이름은 홍길동입니다 만나서 반가워요</div>
+        <div class="white-space3">안녕하세요? 제 이름은 홍길동입니다 만나서 반가워요</div>
+        <div class="white-space4">안녕하세요? 제 이름은 홍길동입니다 만나서 반가워요</div>
+        <div class="white-space5">안녕하세요? 제 이름은 홍길동입니다 만나서 반가워요</div>
+    </div>
+
+    <div>
+        <div class="spacing1">글자   간격조절 ㅎㅎ    ㅎㅎ ㅎ ㅎ ㅎ</div>
+        <div class="spacing2">글자   간격조절 ㅎㅎ    ㅎㅎ ㅎ ㅎ ㅎ</div>
+        <div class="spacing3">글자   간격조절 ㅎㅎ    ㅎㅎ ㅎ ㅎ ㅎ</div>
+    </div>
+  </body>
+</html>

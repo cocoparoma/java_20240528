@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문자선택자</title>
+    <style>
+      /* 선택자 ::first-letter : 첫번째 글자를 선택*/
+      /* 선택자 ::first-line : 첫번째 줄을 선택 */
+      /* 선택자 ::selection : 드래그한 글자들을 선택 */
+      /* 선택자 ::before : 태그 앞에 공간을 선택, content속성 반드시 추가 */
+      /* 선택자 ::after  : 태그 뒤 공간을 선택, content속성 반드시 추가 */
+      div::first-letter {
+        color: red;
+      }
+      div::first-line {
+        color: aqua;
+      }
+      div::selection {
+        color: blueviolet;
+      }
+      div::before {
+        content: "before입니다.";
+        color: darkgreen;
+      }
+      div::after {
+        content: "after입니다.";
+        color: mediumpurple;
+      }
+      /* 목록 1 옆 가운데 회색 점을 배치하는 예제 */
+      span {
+        padding-right: 20px;
+        position: relative;
+      }
+      span::after {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: gray;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+      }
+      /* 부정 선택자 */
+      /* 선택자1:not(선택자2) : 선택자1 중에서 선택자2가 아닌 요소들을 선택 */
+      .item:not(.first){
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      의사 클래스는 터치스크린에서 문제가 많습니다. 브라우저에 따라서 :hover를
+      절대 활성화하지 않을 수도 있지만, 요소를 터치한 직후에만, 아니면 터치한
+      이후 다른 요소를 다시 터치하기 전까지 계속 활성화할 수도 있습니다. 웹
+      개발자는 호버링이 제한적이거나 아예 불가능한 장치에서도 콘텐츠에 접근할 수
+      있도록 개발해야 합니다.
+    </div>
+    <p>
+      <span>목록1</span><span>목록1</span><span>목록1</span>
+    </p>
+    <ul>
+        <li class="item first">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+    </ul>
+  </body>
+</html>
