@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표 예제</title>
+    <style>
+        .post tbody tr:hover{
+            background: silver;
+        }
+        .post{
+            width: 100%;
+            border: 1px solid black;
+            border-left: 0px;
+            border-right: 0px;
+            border-collapse: collapse;
+            text-align: center;
+            table-layout: fixed;
+            line-height: 30px;
+        }
+        .post th, .post td{
+            border: 1px solid black;
+            border-left: 0px;
+            border-right: 0px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <table class="post">
+        <caption>게시글</caption>
+        <thead>
+        <tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th></tr>
+        </thead>
+
+        <tbody>
+        <tr><td>3</td><td>게시글 입력</td><td>가나다라</td><td>13</td></tr>
+        <tr><td>2</td><td>글 작성 완료</td><td>행인2</td><td>15</td></tr>
+        <tr><td>1</td><td>안녕하세요</td><td>행인1</td><td>100</td></tr>
+        </tbody>
+
+
+    </table>
+
+</body>
+</html>

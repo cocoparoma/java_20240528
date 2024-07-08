@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>표 스타일</title>
+    <style>
+        .table1{
+            /* 
+            caption-side
+            - 캡션 위치 top or bottom
+
+            border-collapse
+            - td/th의 테두리와 table의 테두리를 각각 보여 줄 건지 합쳐서 보여줄 건지 결정하는 속성
+            - seperate(각각, 기본값), collapse(합침)
+
+            table-layout
+            
+            */
+
+            width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse;
+            table-layout: fixed;
+            caption-side: bottom;
+            /* text-align: center; */
+        }
+        .table1 td, .table1 th{
+            border: 1px solid black;
+            height: 50px;
+            width: 50px;
+            
+        }
+        .table1 th:first-of-type{
+            width: 50px;
+        }
+
+        .table2{
+            width: 100%;
+            border: 1px solid black;
+            table-layout: fixed;
+            caption-side: bottom;
+            border-collapse: collapse;
+            empty-cells: hide;
+        }
+        .table2 td, .table2 th{
+            border: 1px solid black;
+            height: 50px;
+            width: 50px;
+            
+        }
+    </style>
+  </head>
+  <body>
+    <table class="table1">
+      <caption>
+        게시글
+      </caption>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>조회수</th>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>테스트입니다.</td>
+        <td>abc123</td>
+        <td>1</td>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>공지사항</td>
+        <td>관리자</td>
+        <td>13</td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <table class="table2">
+        <caption>
+          게시글
+        </caption>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>조회수</th>
+        </tr>
+  
+        <tr>
+          <td>2</td>
+          <td>테스트입니다.</td>
+          <td>abc123</td>
+          <td>1</td>
+        </tr>
+  
+        <tr>
+          <td>1</td>
+          <td>공지사항</td>
+          <td>관리자</td>
+          <td></td>
+        </tr>
+      </table>
+  </body>
+</html>

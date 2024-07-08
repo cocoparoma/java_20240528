@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>float</title>
+    <style>
+        /* 
+        float
+        - 요소를 왼쪽 또는 오른쪽으로 배치할 때 사용
+        - 특징
+        1. float가 적용된 요소의 부모 요소는 float가 적용된 요소의 높이를 인식하지 못한다.
+        + ::after 를 이용하면 인식하게 할 수 있다.
+        + content: ''; clear : both; display : block;
+        2. display에 inline, inline-block, block의 의미가 없어진다.
+        3. 너비(width)를 지정해야 한다.
+        4. float을 이용해 엔터에 의한 공백을 해결함
+        */
+        .container1{
+            /* 엔터 붙여주기위한 코드 1 */
+            font-size: 0;
+        }
+        .container1 .box{
+            width: 100px;
+            height: 100px;
+            border: 3px solid black;
+            display: inline-block;
+            /* 위로 붙임 */
+            vertical-align: top;
+            /* 엔터 붙여주기위한 코드 2 */
+            font-size: 16px;
+
+            line-height: 100px;
+            text-align: center;
+            
+        }
+        .container2 .box{
+            width: 100px;
+            height: 100px;
+            border: 3px solid black;
+            float: left;
+
+            
+            line-height: 100px;
+            text-align: center;
+        }
+
+        .container2 :nth-child(2){
+            float: right;
+        }
+        /* float 적용된 요소의 부모 요소가 float 적용된 요소의 높이를 가지고 오는 코드 */
+        .container2::after{
+            clear: both;
+            content: '';
+            display: block;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="container1">
+        <div class="box">1</div>
+        <!-- 둘 사이에 공백이 생김 왜? enter에 의한 공백 -->
+        <div class="box">2</div>
+        <div class="box">3</div><div class="box">4</div>
+    </div>
+
+    <hr>
+
+    <div class="container2">
+        <div class="box">1</div>
+        <div class="box nth-child">2</div>
+    </div>
+  </body>
+</html>

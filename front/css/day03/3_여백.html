@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여백 스타일</title>
+    <style>
+        /* padding
+            - padding-top, padding-right, padding-bottom, padding-left 의 축약 속성(시계방향)
+            - 테두리 안쪽 여백으로, 요소의 시작점을 지정함
+        */
+        .box1{
+            border: 1px solid black; width: 200px; height: 100px;
+            /* padding을 추가하면 크기가 반드시 커지지 않음
+                - box-sizing : border-box로 하면 padding이 추가되어도 커지지 않음
+            */
+            box-sizing: border-box;
+            padding: 20px;
+            margin-bottom: 30px;
+            }
+        /* margin
+            - margin-top, margin-right, margin-bottom, margin-left의 축약 속성(시계방향)
+            -테두리 밖 여백, 형제인 두 요소의 margin이 겹치면 큰 margin 하나만 적용 됨
+        */ 
+
+        .box2{
+            border: 1px solid brown; width: 200px; height: 100px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            /* box1 과 box2 중 큰 margin 값만 적용 됨 */
+        }
+        .box3{
+            border: 1px solid  brown; width: 200px; height: 100px;
+            box-sizing: border-box;
+            margin: 10px auto;
+            /* 위/아래는 10px 좌/우는 auto */
+        }
+        .box4{
+            border: 3px solid black; width: 300px; height: 300px;
+            box-sizing: border-box;
+            padding: 30px;
+            background: lightblue;
+            background-clip: content-box;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">this is box1</div>
+    <div class="box2">this is box2</div>
+    <div class="box3">this is box3</div>
+    <div class="box4">this is box4</div>
+</body>
+</html>

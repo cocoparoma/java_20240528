@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>box Ex</title>
+    <style>
+      .main {
+        margin: 30px auto;
+      }
+      .padding-container .box1 {
+        border: 3px solid red;
+        width: 240px;
+        height: 240px;
+        padding: 30px;
+      }
+      .padding-container .inner-box {
+        border: 3px solid black;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .margin-container .box1 {
+        border: 3px solid red;
+        width: 300px;
+        height: 300px;
+      }
+      .margin-container .inner-box {
+        border: 3px solid black;
+        height: 240px;
+        width: 240px;
+        margin: 30px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- padding use -->
+
+    <div class="padding-container">
+      <div class="box1 main">
+        <div class="inner-box"></div>
+      </div>
+    </div>
+
+    <!-- margin use -->
+
+    <div class="margin-container">
+      <div class="box1 main">
+        <div class="inner-box"></div>
+      </div>
+    </div>
+  </body>
+</html>
