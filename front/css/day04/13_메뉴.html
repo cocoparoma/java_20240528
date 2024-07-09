@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 예제</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        @keyframes fontsize_scale {
+            from{
+                font-size: 16px;
+            }
+            to{
+                font-size: 50px;
+            }
+        }
+        a{
+            text-decoration-line: none;
+        }
+        
+        .container-menu-box{
+            height: 300px;
+            width: 1000px;
+            padding: 50px;
+            border: 1px solid transparent;
+            display: inline-block;
+        }
+
+        .menu{
+            border: 3px solid black;
+            display: inline-block;
+            height: calc(100%);
+            width: calc(30%);
+            text-align: center;
+            line-height: 280px;
+            
+        }
+        .container-menu-box::after{
+            clear: both;
+            content: '';
+            display: block;
+        }
+        .menu:hover{
+            background-color: yellow;
+            animation: fontsize_scale 1s linear infinite alternate;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container-menu-box">
+        <div class="menu m1">
+            <a href="">메뉴 1</a>
+        </div>
+        <div class="menu m2">
+            <a href="">메뉴 2</a>
+        </div>
+        <div class="menu m3">
+            <a href="">메뉴 3</a>
+        </div>
+    </div>
+</body>
+</html>

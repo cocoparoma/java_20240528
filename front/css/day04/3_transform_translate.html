@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>transform:translate</title>
+    <style>
+        /* 
+        translate();
+        - 주어진 방향으로 이동하는 함수
+        - (default) : x, y 축 방향
+        - X : x 축 방향
+        - Y : y 축 방향
+        - Z : z 축 방향
+        - 3d : x y z 축 방향
+        + z 축 방향인 경우 부모 요소에 perspective 요소를 추가해야 깊이를 명확히 느낄 수 있음
+
+        */
+        .box{
+            width: 200px;
+            height: 100px;
+            margin-bottom: 100px;
+            border: 3px solid black;
+        }
+        .container{
+            /* Z 축을 이동하기 위해서 부모 클레스에 있어야 함 */
+            perspective: 500px;
+        }
+        .t1{
+            transform: translateX(100px);
+        }
+        .t2{
+            transform: translateY(50px);
+        }
+        .t3{
+            transform: translate(100px, 50px);
+        }
+        .t4{
+            transform: translateZ(-100px);
+        }
+        .t5{
+            transform: translate3d(100px, 0px,100px);
+        }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="container">
+      <div class="box"></div>
+      <hr>
+      <div class="box t1"></div>
+      <div class="box t2"></div>
+      <div class="box t3"></div>
+      <div class="box t4"></div>
+      <div class="box t5"></div>
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>transform: scale</title>
+    <style>
+      /* 
+        scale?
+        - 요소를 확대/츅소하는 함수
+        - (default) : x, y 축 방향 확대/축소
+        - X : x 축 방향 확대/축소
+        - Y : y 축 방향 확대/축소
+        - Z : z 축 방향 확대/축소
+        - 3d : x y z 축 방향 확대/축소
+        + z 축 방향인 경우 부모 요소에 perspective 요소를 추가해야 깊이를 명확히 느낄 수 있음
+        */
+      .container {
+        perspective: 500px;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        border: 3px solid black;
+        margin-bottom: 100px;
+      }
+
+      .s1 {
+        transform: scale(2, 2);
+      }
+      .s2 {
+        transform: scaleX(2);
+      }
+      .s3 {
+        transform: scaleY(2);
+      }
+      .s4 {
+        transform: scale3d(2, 2, 2);
+      }
+      .s5 {
+        transform: scaleZ(2);
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <hr />
+      <div class="box s1"></div>
+      <div class="box s2"></div>
+      <div class="box s3"></div>
+      <div class="box s4"></div>
+      <div class="box s5"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform 관련 속성</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 100px;
+            border: 3px solid black;
+            margin-bottom: 100px;
+        }
+        /* 
+        transform-origin : 요소 변경시 기준점을 설정
+        */
+
+        .s1{
+            transform: scaleX(2);
+            transform-origin: 0 0;
+        }
+
+        .container-style1, .container-style2{
+            display: inline-block;
+            border: 10px solid red;
+            transform: perspective(500px) rotateY(-60deg);
+        }
+        .inner-box{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            transform: perspective(500px) rotateY(60deg);
+        }
+        .container-style2{
+            transform-style: preserve-3d;
+        }
+        .container{
+            perspective: 500px;
+        }
+        /* 
+        transform-style
+        - 여러 가지 변형을 동시에 하는 경우 부모 요소에 적용한 3d 변형을 하위 요소에 적용하는 속성
+        - flat : 하위 요소를 평면으로 처리
+        - preserve-3d : 하위요소들에게 3d 효과 적용
+        */
+        .box1, .box2{
+            width: 200px;
+            height: 200px;
+            border: 3px solid black;
+            display: inline-block;
+            background-image: url(https://media.istockphoto.com/id/1782894545/ko/%EC%82%AC%EC%A7%84/%EA%B1%B4%EB%AC%BC-%EC%98%A5%EC%83%81%EC%97%90-%EC%84%9C%EC%84%9C-%EB%B0%A4%EC%97%90-%EB%8F%84%EC%8B%9C%EB%A5%BC-%EB%B0%94%EB%9D%BC%EB%B3%B4%EA%B3%A0-%EC%9E%88%EB%8A%94-%EB%82%A8%EC%9E%90.jpg?s=1024x1024&w=is&k=20&c=TmhFfg4A9JNBhgUhWMOkmxAqxq7rnW0RFfLeDTu-yQk=);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            transform: rotateY(180deg)
+        }
+        .box2{
+            backface-visibility: hidden;
+            /* 
+            뒷면을 보일지 안보일지 결정하는 요소
+            - hidden : 안보임
+            - visible : 보임
+            */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <div class="box s1"></div>
+    </div>
+
+    <div class="container-style1">
+        <div class="inner-box"></div>
+    </div>
+
+    <div class="container-style2">
+        <div class="inner-box"></div>
+    </div>
+    <div class="backface">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+
+</body>
+</html>

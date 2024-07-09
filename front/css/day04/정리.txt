@@ -1,0 +1,102 @@
+배경 색
+- background-color: 
+- background-clip: border-box or padding-box or content-box; 배경 범위 조절
+- background-image: (url); : 배경에 이미지
+- background-repeat: repeat/x-repeat/y-repeat/no-repeat; 빈 부분에 같은 이미지를 반복해서 채울지 여부 설정
+- background-size: auto/contain/cover/px or % ; 배경 이미지 크기를 조절하는 속성
+- background-position: left/center/ . . .
+- background-origin: border-box/padding-box/content-box; : 배경 이미지 배치할 때 기준을 정하는 속성
+- background-attachment: scroll/fixed; : 웹페이지가 위아래로 줌직일 때 배경을 고정할지 여부를 정하는 속성
+- background: image/repeat/attachment/position/clip/origin/size; 한번에 설정하는 속성
+
+선형 그라데이션
+background: -접두사-linear-gradient(각도 or 방향, 시작 색상[color-stop 색상, 위치], 끝색상)
+- to top/left/right/bottom
+접두사
+- -webkit- 크롬, 사파리
+- -o- 오페라 : to 사용 안함
+- -moz- 파이어 폭스 : to 사용 안함
+- -ms- 익스플로러 : 적용안됨
+
+각도
+숫자 deg 위쪽을 기준으로 시계방향으로 각도 증가
+
+원형 그라데이션
+background: -접두사-radial-gradient(위치 모양, 크기, 시작 색상, 끝색상);
+background: radial-gradient(모양 크기 at 위치, 시작 색상, 끝색상);
+- circle : 원형
+- eclipse : 타원형 (default)
+크기
+closest-side/corner/
+
+변형/애니메이션
+변형 : 사용자의 동작에 따라 크기가 바뀌고 요소가 이동 회전하는 것
+애니메이션 : 변형을 부드럽게 연결하는 것
+2, 3차원 변형 있음
+transform : -접두사-transform: 변형함수; transform: 변형함수;
+변형함수
+translate(x, y) : 지정한 크기만큼 x, y축으로 이동
+translateX(tx) : x 축으로 이동
+translateY(tY) : y 축으로 이동
+
+matrix3d(n [,n]) : 4*4 행렬로 이동과 확대/축소, 회전 등 변환
+translate3d : 3차원 이동 x, y, z
+translateZ(tz) : z 축으로 이동
+
+scale? (좌표 값) : 요소를 일정 페이지만큼 확대/축소 시키는 함수
+
+rotate? (죄표 값) : 요로를 일정 수치만큼 회전 시키는 함수
+
+skew? (deg 값); : 요소를 비트는 함수
+
+transform-origin : x, y, z 
+
+perspective: px : 원근감을 가지게 하는 함수
+
+transform-style: flat/preserve-3d : 하위요소를 평면/3d로 표시
+
+backface-visibility :뒷면이 보일지 안보일지 설정
+
+트랜지션 : 웹 요소의 스타일이 바뀌는 것을 의미 css로 애니메이션 같은 효과를 낼 수 있음
+transition-property: all/none/(속성 명) : 적용할 속성 선택(여러 개 적용시 콤마로 구분)
+transition-duration: 시간(ms or s) : 움직일 시간을 정함
+transition-timing-function: 속성 값;
+- linear 처음부터 끝까지 일정한 속도로 진행
+- ease 진행 시간 선택
+- ease-in or out 순차적인 속도 선택
+- ease-in-out 트랜지션 시간 지연 선택
+- cubic-bezier(n,n,n,n) : 구간별 속도 선택 (n : 0~1)
+transition-delay: time(s, ms) : 트랜지션이 두개 이상일시 연속되는 트랜지션에 딜레이를 줌
+transition: property/duration/timing-function/delay : 축약
+
+@keyframes : 애니메이션이 바뀌는 지점 선택
+animation-name : keyframes에 적용할 이름
+animation-delay : 지연 시간 선택
+animation-timing-function : 애니메이션 실행 속도
+- linear 처음부터 끝까지 일정한 속도로 진행
+- ease 진행 시간 선택
+- ease-in or out 순차적인 속도 선택
+- ease-in-out 트랜지션 시간 지연 선택
+- cubic-bezier(n,n,n,n) : 구간별 속도 선택 (n : 0~1)
+animation-iteration-count (숫자 or infinite(무한)): 반복 횟수
+animation-duratuion : 완료 될 때 까지의 시간
+animation-direction : 실행할 방향(앞, 뒤 혹은 번갈아)
+- normal : 기본 값 (forwards)
+- reverse : 애니메이션이 역방향으로 진행 (backwards)
+- alternate :  애니메이션이 기본값으로(앞) 진행된 후 역방향으로 번갈아 진행
+- alternate-reverse : 애니메이션이 역방향으로(뒤) 진행된 후 앞으로 번갈아 진행
+animation-fill-mode :애니메이션 시작 전, 끝나기 전(또는 둘 다) 스타일을 지정
+- none : 기본값 (따로 적용되지 않음)
+- forwards : 마지막 키 프레임에 의해 설정된 스타일 값을 유지 (애니메이션 방향 및 애니메이션 반복 횟수에 따라 다름)
+- backwards : 첫 번째 키 프레임에 설정된 스타일 값을 가져오고 (애니메이션 방향에 따라 다름) 애니메이션 지연 기간 동안이 값을 유지
+- both : 애니메이션은 앞뒤 모두에 대한 규칙을 따름
+animation-play-state : 애니메이션 실행 여부( 실행 or 일시정지 )
+- paused : 애니메이션 일시중지
+- running : 기본값 (애니메이션 실행)
+
+
+
+
+
+
+
