@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            margin: 0 auto;
+            position: relative;
+            height: 30px;
+            width: 628px;
+            border-radius: 40px;
+            padding: 10px;
+            border: 1px solid rgb(76, 205, 50);
+            margin-top: 20px;
+        }
+        .search-button{
+            float: right;
+            width: 40px;
+            height: 100%;
+            border-radius: 50%;
+            background-color: transparent;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-text{
+            border: none;
+            background: none;
+            outline: none;
+            float: left;
+            font-size: 16px;
+            line-height: 30px;
+            width: 90%;
+        }
+        .container::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <form class="container" action="#" accept-charset="UTF-8" method="get">
+        <input class="search-text" type="text" placeholder="   검색어를 입력해 주세요">
+        <button class="search-button" type="submit" >
+            <img class="search-button" src="free-icon-search-4585720.png" alt="#">
+        </button>
+    </form>
+</body>
+</html>

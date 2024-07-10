@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쇼핑 제품 목록</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      .product-item {
+        width: 98px;
+        margin-left: 10px;
+      }
+      .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      .product-link {
+        display: block;
+      }
+      .box-thumb {
+        height: 126px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 5px;
+        position: relative;
+      }
+      .box-thumb::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        border-radius: 4px;
+        content: "";
+      }
+      .box-title > p {
+        line-height: 10px;
+        font-size: 10px;
+        color: black;
+        margin-bottom: 4px;
+      }
+      .product-item:hover .img-thumb {
+        transform: scale(1.1);
+      }
+      .box-title:hover {
+        text-decoration: underline;
+      }
+      .product-item {
+        float: left;
+      }
+      /* .product-item+ .product-item{
+            margin-left: 120px;
+        }*/
+      .product-item:nth-child(4n + 1) {
+        margin-left: 0;
+      }
+      /* .product-list::after{
+            content: '';
+            display: block;
+            clear: both;
+        } */
+    </style>
+  </head>
+  <body>
+    
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="product-list">
+        <li class="product-item">
+          <a href="#" class="product-link">
+            <div class="box-thumb">
+              <img
+                src="https://s.pstatic.net/shopping.phinf/20240624_7/5cfbf0f5-3219-4097-8ebd-481a0c18a4ff.jpg?type=f294_378"
+                alt=""
+                class="img-thumb"
+                width="98px"
+                height="126px"
+              />
+            </div>
+            <div class="box-title">
+              <p>귀여운 강아지</p>
+              <p>귀엽구만</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    
+  </body>
+</html>

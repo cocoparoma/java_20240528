@@ -1,0 +1,78 @@
+외부 css연결
+
+<link>
+
+미디어 쿼리 적용하기
+웹 문서에 직접 정의
+<style media="미디어 퀴리 조건">
+    스타일 적용용
+</style>
+
+해당 조건에 정의
+<style>
+@media 조건{
+    적용
+}
+</style>
+
+그리드 레이아웃(어러개의 칼럼으로 나누는 일)
+플렉스 컨테이너에 display를 flex/inline-flex 로 설정
+flex-direction
+- 주축 방향을 설정
+- row : 가로/왼>오
+- row-reverse : 가로/오>왼
+- column : 세로/상>하
+- column-reverse : 세로/하>상
+flex-wrap : 아이템의 크기가 컨테이너보다 클 경우 한줄에 표기할지 여부를 결정하는 속성
+- nowrap : default, 한줄에 표기
+- wrap : 여러줄, 다음 아이템이 아래로 배치
+- wrap-reverse : 여러줄, 다음 아이템이 위로 배치
+flex-flow
+- direction/wrap 의 단축속성
+justify-content
+- 주축 방향으로 아이템 배치 방법을 설정하는 속성
+- flex-start : default, 주축 시작을 기준으로 배치
+- flex-end : 주축 끝점을 기준으로 배치
+- center : 가운데 배치
+- space-between : 첫번째 아이템과 마지막 아이템을 각 끝에 배치한 후 아이템 사이 간격이 일정하도록 배치
+- space-around : 모든 아이템 좌우 간격이 일정하도록 배치(아이템 사이 공백이 조금더 큼)
+- space-evenly : 모든 여백이 동일하도록 아이템 배치
+align-items
+- 교차축 방향으로 아이템 배치 방법을 설정하는 속성
+- flex-start : 교차축의 시작점에 맞춰 배치
+- flex-end : 교차축의 끝점에 맞춰 배치
+- center : 교차축 가운데에 정렬
+- baseline : 아이템을 문자 기준선에 정렬
+- stretch : 교차축을 채우기 위해 아이템을 늘림 (default)
+align-self
+- 아이템에 적용하는 속성, align-items가 적용된 상태에서 특정 아이템들만 지정 하고싶을 때 사용
+- align-items와 사용하는 값이 같음
+aling-content
+- 교차축 정렬 방법을 설정
+- flex-start : default, 주축 시작을 기준으로 배치
+- flex-end : 주축 끝점을 기준으로 배치
+- center : 가운데 배치
+- space-between : 첫번째 아이템과 마지막 아이템을 각 끝에 배치한 후 아이템 사이 간격이 일정하도록 배치
+- space-around : 모든 아이템 좌우 간격이 일정하도록 배치(아이템 사이 공백이 조금더 큼)
+- space-evenly : 모든 여백이 동일하도록 아이템 배치
+
+
+그리드(격자) 레이아웃
+플렉스 컨테이너에 display를 grid/inline-grid로 설정
+grid-template-columns
+- 그리드의 열을 지정(개수, 크기)
+- 각 열의 크기를 이용
+grid-template-rows
+- 그리드의 행을 지정(개수, 크기)
+repeat(개수, 크기)
+- 그리드의 행과 열을 지정할 때 같은 크기의 항목들을 여러개 지정할 때 사용하는 함수
+minmax(최소크기, 최대크기)
+- 그리드의 행과 열을 지정할 때 사용
+- 한 아이템의 최소너비와 최대너비를 지정
+auto-fit/auto-fill
+- 컬럼의 개수를 자동으로 조절함
+- 남은 공간을 그대로 둠 : auto-fill
+- 남은 공간이 없도록 아이템을 늘림 : auto-fit
+fr : 단위
+- grid를 fr만큼 자른다.
+- 각 아이템이 동일한 길이를 가진다.

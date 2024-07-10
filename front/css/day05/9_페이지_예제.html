@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼예제</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+        }
+        .container .box{
+            width: 150px;
+            height: 36px;
+            display: grid;
+            position: relative;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(1, 36px);
+            gap: 5px;
+            margin-top: 30px;
+            grid-template-areas: 
+            "left-btn column-num right-btn"
+            ;
+        }
+        .btn{
+            background-color: white;
+            border: 1px solid green;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+        .column-num{
+            line-height: 200%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <button class="btn left-btn"><</button>
+            <p class="column-num">1/3</p>
+            <button class="btn right-btn">></button>
+        </div>
+    </div>
+
+</body>
+</html>

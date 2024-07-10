@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes bigimg {
+            from{
+                width: calc(100%);
+            }
+            to{
+                width: calc(110%);
+            }
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            position: relative;
+            border: 1px solid black;
+            height: 300px;
+            width: 200px;
+            overflow: hidden;
+
+        }
+        .img{
+            position: relative;
+            margin-bottom: 50px;
+            width: calc(100%);
+            height: auto;
+            overflow: hidden;
+        }
+
+        .img:hover{
+            /* animation: move 1s linear 1 alternate forwards; */
+            animation: bigimg 1s linear 1 normal forwards;
+        }
+        a{
+            position: relative;
+            text-decoration-line: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="" class="img-link">
+            <img src="spspspsp.jpg" alt="" class="img">
+        </a>
+        <a href="" class="text-link">가십거리가 여기에 적혀져 있습니다.</a>
+    </div>
+</body>
+</html>

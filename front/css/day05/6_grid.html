@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid</title>
+    <style>
+        .container{
+            display: grid;
+            /* 
+            <컨테이너에 적용하는 속성>
+            grid-template-columns
+            - 그리드의 열을 지정(개수, 크기)
+            - 각 열의 크기를 이용
+            grid-template-rows
+            - 그리드의 행을 지정(개수, 크기)
+            repeat(개수, 크기)
+            - 그리드의 행과 열을 지정할 때 같은 크기의 항목들을 여러개 지정할 때 사용하는 함수
+            minmax(최소크기, 최대크기)
+            - 그리드의 행과 열을 지정할 때 사용
+            - 한 아이템의 최소너비와 최대너비를 지정
+            auto-fit/auto-fill
+            - 컬럼의 개수를 자동으로 조절함
+            - 남은 공간을 그대로 둠 : auto-fill
+            - 남은 공간이 없도록 아이템을 늘림 : auto-fit
+            fr : 단위
+            - grid를 fr만큼 자른다.
+            - 각 아이템이 동일한 길이를 가진다.
+            column-gap
+            - 컬럼 사이의 간격을 지정
+            row-gap
+            - 행 사이의 간격을 지정
+            grid-gap
+            - 행과 열 사이의 간격을 지정
+            */
+
+
+            /* grid-template-columns: repeat(4, 1fr); */
+            /* grid-template-columns: minmax(100px, 1fr) minmax(200px, 1fr); */
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-template-rows: repeat(4, 200px);
+            background-color: tomato;
+            /* column-gap: 10px;
+            row-gap: 20px; */
+            gap: 10px 5px;
+        }
+        
+        /*
+        <아이템에 적용하는 속성>
+        grid-column-start
+        - 아이템의 열 시작 번호
+        grid-column-end
+        - 아이템의 열 끝의 다음 번호
+        grid-column
+        - start/end를 한번에 지정
+        - / 로 구분해야함
+        grid-row-start
+        - 아이템의 행 시작 번호
+        grid-row-end
+        - 아이템의 행 끝의 다음 번호
+        grid-row
+        - start/end 단축속성
+        - / 로 구분
+        */
+        .container .box1{
+            background-color: yellow;
+            grid-row-start: 1;
+            grid-row-end: 4;
+            /* 4전까지 */
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        .container .box2{
+            background-color: gray;
+            grid-row-start: 1;
+            grid-column: 3/5;
+        }
+        .container .box3{
+            background-color: palevioletred;
+            grid-row: 2/4;
+            grid-column: 3/5;
+            
+        }
+        .container .box4{
+            background-color: yellowgreen;
+            grid-row-start: 4;
+            grid-column: 1/5;
+        }
+        .container2{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 50px);
+            background-color: plum;
+            margin-top: 20px;
+            gap: 5px;
+            /* 
+            grid-template-areas
+            - 아이템에 지정된 템플릿들을 어떻게 배치할지 나타내는 속성
+            - ""를 이용하여 한 행에 들어갈 템플릿을 지정
+            - 빈 곳은 . 으로 표시함
+            */
+            grid-template-areas: 
+            "box1 box1 box2 box2"
+            "box1 box1 box3 box3"
+            "box1 box1 box3 box3"
+            "box4 box4 box4 box4";
+        }
+        .container2 .box1{ background-color: yellow; grid-area: box1;}
+        .container2 .box2{ background-color: gray; grid-area: box2;}
+        .container2 .box3{ background-color: red; grid-area: box3;}
+        .container2 .box4{ background-color: rgb(30, 180, 55); grid-area: box4;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+
+    </div>
+
+    <div class="container2">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+
+    </div>
+</body>
+</html>
