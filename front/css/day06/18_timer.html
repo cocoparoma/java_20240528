@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timer</title>
+</head>
+
+    
+<body>
+    <button class="timer" type="button" onclick="timer_1s()">콘솔에 1초마다 시간표기</button>
+    <button class="timer_stoper" type="button" onclick="clear_interval()">시간표기 중지</button>
+    <script>
+        /*
+        1초마다 시간을 콘솔에 출력하는 코드
+        */
+        var in_stop
+        function timer_1s(){
+            in_stop = setInterval(()=>{
+                var date = new Date()
+                var dateStr = convertDate(date)
+            },1000)
+        }
+        function convertDate(date){
+            var m = String(date.getMinutes()).padStart(2,'0')
+            var s = String(date.getSeconds()).padStart(2,'0')
+            console.log(`${m} : ${s}`)
+        }
+        function clear_interval(){
+            clearInterval(in_stop)
+        }
+    </script>
+</body>
+</html>

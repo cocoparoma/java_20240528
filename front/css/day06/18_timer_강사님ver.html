@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timer</title>
+</head>
+<body>
+    <script>
+        var s = 0, m = 0
+
+        console.log(getTime(m, s))
+        setInterval(()=>{
+            ++s
+            if(s == 60){
+                s = 0
+                ++m
+            }
+            
+            console.log(getTime(m, s))
+        }, 1000)
+
+        function getTime(m, s){
+            var M = String(m).padStart(2,'0')
+            var S = String(m).padStart(2,'0')
+            return`${M} : ${S}`
+        }
+    </script>
+</body>
+</html>
