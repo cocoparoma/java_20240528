@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성선택에제</title>
+    <style>
+        .btn{
+            border-radius: 50%;
+            border: 1px solid yellowgreen;
+            margin: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <button class="btn b-" onclick="decrease()"> - </button>
+    <input type="text" value="0" name="" id="text_v" readonly>
+    <button class="btn b+" onclick="increase()"> + </button>
+
+    <script>
+        function decrease(){
+            var input_t = document.getElementById("text_v")
+            input_t.value--
+            
+        }
+        function increase(){
+            var input_t = document.getElementById("text_v")
+            input_t.value++
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="move_Naver()">네이버로 이동</button><hr>
+    <button onclick="move_Url()">셈플 url</button><hr>
+    <button onclick="move_Google()">구글로 이동</button><hr>
+    <button onclick="page_Reload()">새로고침</button><hr>
+    <button onclick="move_Login()">글쓰기</button><hr>
+    <script>
+        /*
+        location.href
+        - 현재 페이지의 url을 가져오거나 설정
+        */
+        document.write(`현제 url : ${location.href} <hr>`)
+
+        function move_Naver(){
+            location.href = `https://www.naver.com/`
+        }
+
+        function move_Url(){
+            location.href += `?a=1&b=2#aa`
+        }
+        /*
+        location.protocol
+        - 현제 url의 프로토콜을 반환
+        - http:, https:
+        location.host
+        - 호스트의 이름과 포트 번호를 반환
+        location.pathname
+        - url의 경로 부분을 반환
+        location.search
+        - url의 쿼리 문자열을 반환
+        - ? 뒤에 있는 값들 => 서버에 전송하는 값들이 있는 문자열
+        location.hash
+        - url의 해시(#) 부분을 반환
+        location.assign(url)
+        - 지정된 url로 이동
+        location.reload()
+        - 지금 페이지를 다시 로드 
+        */
+        document.write(`현제 url의 프로토콜 : ${location.protocol} <hr>`)
+        document.write(`현제 url의 호스트 : ${location.host} <hr>`)
+        document.write(`현제 url의 경로 부분 : ${location.pathname} <hr>`)
+        document.write(`현제 url의 쿼리 문자열 부분 : ${location.search} <hr>`)
+        document.write(`현제 url의 해시(#) 부분 : ${location.hash} <hr>`) 
+
+        function move_Google(){
+            location.assign(`https://www.google.com`)
+        }
+        function page_Reload(){
+            location.reload()
+        }
+        function move_Login(){
+            if(confirm(`해당 기능은 로그인이 필요한 서비스 입니다.\n로그인 페이지로 이동.`)){
+                location.href = `https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/`
+            }
+        }
+    </script>
+</body>
+</html>

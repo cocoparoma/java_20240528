@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성선택</title>
+</head>
+<body>
+
+    <a href="https://www.naver.com" target="_blank">검색사이트로 이동</a><hr>
+    <button onclick="ch_google()">구글로 변경</button>
+    <button onclick="ch_naver()">네이버로 변경</button>
+    <button onclick="ch_daum()">다음로 변경</button>
+    
+    
+
+    <script>
+        /*
+        속성 선택
+        - 노드, 표준속성명을 통해 선택
+        - 선택된 표준 속성값을 확인하거나 변경할 수 있다.
+        */
+        function ch_google(){
+            var a = document.getElementsByTagName('a')
+            a.href = `https://google.com`
+        }
+        function ch_naver(){
+            var a = document.getElementsByTagName('a')
+            a.href = `https://naver.com`
+        }
+        function ch_daum(){
+            var a = document.getElementsByTagName('a')
+            a.href = `https://daum.net`
+        }
+    </script>
+</body>
+</html>

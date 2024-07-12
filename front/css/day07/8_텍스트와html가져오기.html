@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트와 html 가져오기</title>
+    <style>
+        #btn_up{
+            width: 100px;
+            border-radius: 30px;
+            border: 1px solid black;
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn_up" onclick="change()">up</button>
+    <ul id="box">
+        <li>메뉴 1</li>
+        <li style="display: none;">메뉴2</li>
+    </ul>
+    <hr>
+
+    <button onclick="toA()"> a태그로 </button>
+    <button onclick="toDiv()"> div태그로 </button>
+    <div class="container" style="margin: 20px 0;">
+        <a href="#">a태그 입니다.</a>
+    </div>
+
+    <script>
+        /*
+        innerText
+        - 태그 안에 있는 글자를 가져오거나 수정. 스타일에 영향을 받음
+        - display가 none인 경우 못 가져옴
+        textContent
+        - 태그 안에 있는 글자를 가져오거나 수정. 스타일에 영향을 받지 않음
+        innerHTML
+        - 태그 안에 있는 html 코드를 가져오거나 수정
+        */
+
+
+
+        function change(){
+            if(btn_up.innerText == 'up'){
+                btn_up.innerText = 'down'
+            }else{
+                btn_up.innerText = 'up'
+            }
+        }
+        function toA(){
+            var container = document.getElementById(`container`)
+            container.innerHTML = '<a href="#">a태그입니다.</a>'
+        }
+        function toDiv(){
+            container.innerHTML = '<div>div태그입니다.</div>'
+        }
+
+        var box = document.getElementById(`box`)
+        document.write(`innerText : ${box.innerText}<br>` )
+        document.write(`textContent : ${box.textContent}<br>`)
+    </script>
+</body>
+</html>
