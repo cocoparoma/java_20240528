@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        .input
+        {
+            position: relative;
+            border: 1px solid blueviolet;
+        }
+        #btn_id{
+            position: absolute;
+            left: 110px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>회 원 가 입</h1>
+    <input type="text" id="text_id" placeholder="아이디"><br>
+    <input type="password" id="text_pw"  placeholder="비밀번호"><br>
+    <button id="btn_id" onclick="check(regex_id, textid, regex_pw, textpw)">회원가입</button>
+    <script>
+        const text_id = document.getElementById(`text_id`)
+        const text_pw = document.getElementById(`text_pw`)
+        const btn_id = document.getElementById(`btn_id`)
+
+        let regex_id = /^[a-zA-Z]*$/
+        let regex_pw =  /^[a-zA-Z0-9]*$/;
+
+        var textid = text_id.value
+        var textpw = text_pw.value
+
+        
+
+        function check(regex_id, textid, regex_pw, textpw){
+
+            var textid = text_id.value
+            var textpw = text_pw.value
+            // console.log(textid)
+            // console.log(textpw)
+            var count = 0
+            if(regex_id.test(textid)){
+                // alert(`잘못된 아이디 입니다.`)
+                count++
+            }
+            if(regex_pw.test(textpw)){
+                // alert(`잘못된 비밀번호 입니다.`)
+                count++
+            }
+            if(count == 2){
+                alert(`회원가입 완료`)
+            }else{
+                alert(`아이디 혹은 비밀번호가 잘못되었습니다.`)
+            }
+                
+            
+
+        }
+
+    </script>
+</body>
+</html>

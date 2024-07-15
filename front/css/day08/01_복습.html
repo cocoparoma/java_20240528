@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습</title>
+    <style>
+        #box{
+            height: 500px;
+            border: 1px solid black;
+        }
+        .bg_color_Y{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn" onclick="btn_click()">버튼</button>
+    <div id="box" onclick="box_click()"></div>
+    <script>
+        const btn = document.getElementById(`btn`)
+        const box = document.getElementById(`box`)
+
+        function btn_click(){
+            alert(`버튼을 클릭하셨습니다.`)
+            // box.style.background = `red`
+            box.classList.toggle(`bg_color_Y`)
+
+        }
+
+        function box_click(){
+            alert(`박스를 클릭하셨습니다.`)
+        }   
+    </script>
+</body>
+</html>

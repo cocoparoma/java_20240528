@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기 예제</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        const box = document.getElementById(`box`)
+
+        increase(0, n=>{
+            increase(n, n=>{
+                increase(n, n=>{
+                    increase(n,n=>{
+                        increase(n,n=>{
+                            document.write(`종료<br>`)
+                        })
+                    })
+                })
+            })
+        })
+
+        function increase(n, callback){
+            setTimeout(() => {
+                var increasedNum = n + 1
+                document.write(`${increasedNum}<br>`)
+                if(callback){
+                    callback(increasedNum)
+                }    
+            }, 1000);
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기예제 promise</title>
+</head>
+<body>
+    <script>
+        increase(0)
+        .then(n=>increase(n))
+        .then(n=>increase(n))
+        .then(n=>increase(n))
+        .then(n=>increase(n))
+
+        /*
+        const promise = new Promise(성공시실행함수, 실패시실행함수)
+        실패시실행함수는 생략가능
+        혹은 .catch로 받아줄 수 있음
+        마지막은 .finally(반드시실행되는함수) 를 사용할 수있음
+        */
+
+        function increase(n){
+            return new Promise((resolve, reject)=>{
+                setTimeout(() => {
+                    var increasedNum = n + 1
+                    document.write(`${increasedNum}<br>`)
+                    if(resolve){
+                        resolve(increasedNum)
+                    }
+                }, 1000);
+
+            })
+        }
+    </script>
+</body>
+</html>
