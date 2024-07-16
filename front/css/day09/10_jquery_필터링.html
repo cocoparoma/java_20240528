@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>형제탐색</title>
+    <script src="../static/js/jquery.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: 1px solid black;
+            /* background-color: yellowgreen; */
+            
+        }
+        body{
+            display: block;
+        }
+        ul{
+            margin: 10px;
+            display: inline-block;
+            width: 400px;
+        }
+        a{
+            margin: 10px;
+            display: inline-block;
+            width: 350px;
+        }
+        li{
+            margin: 10px;
+        }
+        .center{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="menu-list">
+            <li class="menu-item first">
+                <a href="#" class="menu-link .first-link">메뉴 1</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 2</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 3</a>
+            </li>
+            <li class="menu-item center">
+                <a href="#" class="menu-link ">메뉴 4</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 5</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 6</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 7</a>
+            </li>
+        </ul>
+    </nav>
+    <script>
+        /*
+        $('생성자').first()
+        - 요소들 중에서 첫번째 요소
+        $('생성자').last()
+        - 요소들 중에서 마지막 요소
+        $('생성자').eq(n)
+        - 요소들 중 n+1 번째 요소
+        $('생성자').filter('선택자')
+        - 요소들 중에서 선택자와 일치하는 요소
+        $('생성자').not('선택자')
+        - 요소들 중에서 선택자와 일치하지 않는 요소
+        
+        
+        
+        
+        */
+        
+        $('.menu-item').first().css('background', 'red')
+        $('.menu-item').last().css('background', 'blue')
+        $('.menu-item').eq(6).css('border-color', 'yellow')
+        $('.menu-item').filter('.center').css('border-width', '10px')
+        $('.menu-item').not('.center').css('border-style', 'dashed')
+
+    </script>
+
+
+</body>
+</html>

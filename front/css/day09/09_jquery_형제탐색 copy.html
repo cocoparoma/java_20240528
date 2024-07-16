@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>형제탐색</title>
+    <script src="../static/js/jquery.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: 1px solid black;
+            /* background-color: yellowgreen; */
+            
+        }
+        body{
+            display: block;
+        }
+        ul{
+            margin: 10px;
+            display: inline-block;
+            width: 400px;
+        }
+        a{
+            margin: 10px;
+            display: inline-block;
+            width: 350px;
+        }
+        li{
+            margin: 10px;
+        }
+        .center{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="menu-list">
+            <li class="menu-item first">
+                <a href="#" class="menu-link .first-link">메뉴 1</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 2</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 3</a>
+            </li>
+            <li class="menu-item center">
+                <a href="#" class="menu-link ">메뉴 4</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 5</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 6</a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴 7</a>
+            </li>
+        </ul>
+    </nav>
+    <script>
+        /*
+        $('생성자').prev()
+        - 이전 형제 요소를 선택
+        $('생성자').next()
+        - 다음 형제 요소를 선택
+        $('생성자').prevAll()
+        - 이전 모든 형제 요소를 선택
+        $('생성자').prevAll('선택자')
+        - 이전 모든 형제 요소 중 선택자와 일치하는 요소를 선택
+        $('생성자').nextAll()
+        - 다음 모든 형제 요소를 선택
+        $('생성자').nextAll('선택자')
+        - 다음 모든 형제 요소 중 선택자와 일치하는 요소를 선택
+        $('생성자').prevUntil('선택자')
+        - 이전 형제 요소부터 선택자 형제 요소 전까지의 형제 요소를 선택
+        $('생성자').nextUntil('선택자')
+        - 다음 형제 요소부터 선택자 형제 요소 전까지의 형제 요소를 선택
+        $('생성자').siblings()
+        - 모든 형제 요소를 선택
+        $('생성자').siblings('선택자')
+        - 모든 형제 요소들 중 선택자와 일치하는 요소를 선택
+        
+
+        
+        */
+        $('.center').prev().css('background-color', 'gray')
+        $('.center').next().css('background-color', 'yellowgreen')
+        $('.center').prevAll(':first-child').css('background-color', 'gray')
+        $('.center').nextAll().css('background-color', 'red')
+        $('.center').prevUntil(':first-child').children().css('color', 'green')
+        $('.center').nextUntil(':last-child').children().css('color', 'pink')
+        $('.center').siblings().css('border-radius', '10px')
+    </script>
+
+
+</body>
+</html>
