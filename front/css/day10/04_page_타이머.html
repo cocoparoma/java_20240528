@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머</title>
+    <script src="../static/js/jquery.min.js"></script>
+    
+    <style>
+        *{margin: 0 auto;}
+        .box-timer{border: 2px solid black; box-sizing: border-box; padding: 30px; font-size: 30px; text-align: center; width: 500px; margin-top: 20px;}
+        .box-btns{width: 500px; margin: 10px auto;}
+        .btn{
+            width: 45%; float: left; border: 2px solid black; height: 30px; cursor: pointer;
+            background-color: transparent;
+        }
+        .box-btns::after{
+            clear: both;
+            display: block;
+            content: '';
+        }
+        
+        .btn-stop{
+            float: right;
+        }
+        .btn-outline-primary{color:#007bff;border-color:#007bff}.btn-outline-primary:hover{color:#fff;background-color:#007bff;border-color:#007bff}.btn-outline-primary.focus,.btn-outline-primary:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}.btn-outline-primary.disabled,.btn-outline-primary:disabled{color:#007bff;background-color:transparent}.btn-outline-primary:not(:disabled):not(.disabled).active,.btn-outline-primary:not(:disabled):not(.disabled):active,.show>.btn-outline-primary.dropdown-toggle{color:#fff;background-color:#007bff;border-color:#007bff}.btn-outline-primary:not(:disabled):not(.disabled).active:focus,.btn-outline-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-primary.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}
+    </style>
+</head>
+<body>
+    <div class="box-timer">00:00:00</div>
+    <div class="box-btns">
+        <button class="btn btn-go btn-outline-primary" >go</button>
+        <button class="btn btn-stop btn-outline-primary">stop</button>
+    </div>
+    <script>
+
+        var h = 0, m = 0, s = 0
+
+        $('.btn-go').click(function(){
+            timer=setInterval('getTime()',10);
+            $('.btn-stop').text('stop')
+            $('.btn-go').hide()
+            if(flag == false){
+                flag = true
+            }
+        })
+        
+        function getTime(){
+            ++s
+            if(s>=60){
+                s = 0
+                ++m
+            }
+            if(m>=60){
+                m = 0
+                ++h
+            }
+            var H = String(h).padStart(2,'0')
+            var M = String(m).padStart(2,'0')
+            var S = String(s).padStart(2,'0')
+
+            $('.box-timer').text(`${H}:${M}:${S}`)
+        }
+
+        var flag = true
+        $('.btn-stop').click(function(){
+            
+            console.log(flag)
+            if(flag == true){
+                clearInterval(timer)
+                $('.btn-stop').text('reset')
+                flag = false
+                $('.btn-go').show()
+                return
+            }
+            if( flag == false){
+                $('.btn-stop').text('stop')
+                $('.box-timer').text(`00:00:00`)
+                h = 0, m = 0, s = 0
+                timer = null
+                flag = true
+            }
+
+        })
+        
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이동</title>
+    <script src="../static/js/jquery.min.js"></script>
+    <style>
+        .pagination{
+            display: flex; justify-content: center; margin-top: 10px;   
+        }
+        .box-page{margin: 0 10px;}
+        .box{height: 300px; display: none; border: 1px solid black;}
+        .block{display: block;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box1 block">1</div>
+        <div class="box box2 ">2</div>
+        <div class="box box3">3</div>
+    </div>
+    <div class="pagination">
+        <button class="btn-prev"><</button>
+        <span class="box-page">
+            <span id="this-page" data-target=".container">1</span>
+            /
+            <span id="max-page">3</span>
+        </span>
+        <button class="btn-next">></button>
+    </div>
+
+    <script>
+        $('.btn-next').click(function(){
+            var thisPage = $("#this-page").text()
+            var maxPage = $("#max-page").text()
+            
+            if(+thisPage <= maxPage){
+                thisPage = +thisPage + 1
+                $("#this-page").text(thisPage)
+                box_change(thisPage)
+            }
+            if(+thisPage == +maxPage + 1){
+                $("#this-page").text('1')
+                box_change(thisPage)
+            }
+        })
+        $('.btn-prev').click(function(){
+            var thisPage = $("#this-page").text()
+            var maxPage = $("#max-page").text()
+            
+            if(+thisPage <= maxPage){
+                thisPage = +thisPage - 1
+                $("#this-page").text(thisPage)
+                box_change(thisPage)
+            }
+            if(+thisPage == 0){
+                $("#this-page").text(maxPage)
+                box_change(thisPage)
+            }
+        })
+
+        function box_change (nowpage){
+            console.log('ccc')
+            // $('.box').hide()
+            // $('.box').eq(nowpage-1).show()
+            if($("#this-page").text() == 1){
+                $('.box').removeClass('block')
+                $('.box1').addClass('block')
+            }
+            if($("#this-page").text() == 2){
+                $('.box').removeClass('block')
+                $('.box2').addClass('block')
+            }
+
+            if($("#this-page").text() == 3){
+                $('.box').removeClass('block')
+                $('.box3').addClass('block')
+            }
+        }
+
+    </script>
+
+</body>
+</html>
