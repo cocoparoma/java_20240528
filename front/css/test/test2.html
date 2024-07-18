@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 예제</title>
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+
+    <style>
+        *{
+            margin: 10px;
+        }
+        .container, .container fieldset{
+            border: 0;
+        }
+        
+        .table{
+            margin: 0 auto;
+            
+        }
+
+        input{
+            width: 250px;
+            height: 32px;
+            font-size: 15px;
+            border: 0px solid lightgray;
+            border-radius: 15px;
+            outline: none;
+            padding-left: 10px;
+            background-color: rgb(233, 233, 233);
+        }
+        .btn{
+            cursor: pointer;
+        }
+        .bg{
+            color: red;
+        }
+
+        .form-control {
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+        .form-control {
+            transition: none;
+        }
+        }
+
+        .form-control::-ms-expand {
+        background-color: transparent;
+        border: 0;
+        }
+
+        .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+    </style>
+  </head>
+  <body>
+    <!-- placeholder="________________" 을 넣었는데 너무 안이뻐서 제거했슴돠 -->
+    <form action="" class="container">
+      <fieldset>
+        <table class="table" >
+          <tr>
+            <td>아이디</td>
+            <td><input type="text" id="id" class="text form-control " placeholder="" pattern="^[a-zA-Z\d]{8,13}$" required /></td>
+          </tr>
+          <tr>
+            <td class="valid-feedback"> </td>
+            <td class="invalid-feedback feedback-id" style="text-align: center; font-size: small; color: red;" hidden>필수 입력 항목입니다.</td>
+          </tr>
+<!--  -->
+          <tr>
+            <td>페스워드</td>
+            <td><input type="password" id="pw" class="text form-control" placeholder="" required/></td>
+          </tr>
+          <tr>
+            <td class="valid-feedback"> </td>
+            <td class="invalid-feedback feedback-pw" style="text-align: center; font-size: small; color: red;" hidden >필수 입력 항목입니다.</td>
+          </tr>
+<!--  -->
+          <tr>
+            <td>페스워드 확인</td>
+            <td><input type="password" id="pw2" class="text form-control"placeholder="" required/></td>
+          </tr>
+          <tr>
+            <td class="valid-feedback"> </td>
+            <td class="invalid-feedback feedback-pw2 form-control" style="text-align: center; font-size: small; color: red;" hidden>비밀번호와 같지 않습니다.</td>
+          </tr>
+<!--  -->
+          <tr>
+            <td>이메일</td>
+            <td>
+                <input type="text" id="email" class="email form-control" style="width: 140px; margin-right: 0;" placeholder=""/> @
+                <select id="page" style="background-color: transparent; border: 0; margin-left: 0;">
+                  <option>naver.com</option>
+                  <option>gmail.com</option>
+                  <option>daum.net</option>
+                  <option>nate.com</option>
+                </select>
+              </td>
+          </tr>
+          <!--  -->
+          <tr>
+            <td>주소</td>
+            <td><input id="address" type="text" class="text form-control" placeholder=""/></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input
+                type="submit"
+                id="submit"
+                value="가입"
+                class="btn"
+                style="width: 91%;
+                border: 0;
+                background-color: lightgreen;"
+              />
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+    </form>
+    <script>
+
+        const regex_id = /^[a-zA-Z0-9]{8,15}$/
+        const regex_pw = /^[a-zA-Z0-9!@#$]{8,32}$/
+        var User_db = ['test']
+
+        $('.btn').mouseenter(function(){
+            $('#submit').css('background-color', 'rgb(49, 235, 49)')
+        })
+        $('.btn').mouseleave(function(){
+            $('#submit').css('background-color', 'lightgreen')
+        })
+        $('#pw').focus(function(){
+            $('.feedback-pw').text('영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자')
+            $('.feedback-pw').css('color', 'gray')
+            $('.feedback-pw').show()
+        })
+        $('#pw').blur(function(){
+            $('.feedback-pw').text('필수 입력 항목입니다.')
+            $('.feedback-pw').css('color', 'red')
+            $('.feedback-pw').hide()
+            if( $('#pw').val() ==''){
+                $('.feedback-pw').show()
+            }
+        })
+        
+
+        $('#id').focus(function(){
+            if($('#id').val() == ''){
+                $('.feedback-id').text('필수 입력 항목입니다.')
+                $('.feedback-id').hide()
+            }
+        })
+        $('#id').blur(function(){
+            if($('#id').val() == ''){
+                $('.feedback-id').text('필수 입력 항목입니다.')
+                $('.feedback-id').show()
+            }
+        })
+
+        $('#pw2').blur(function(){
+            if($('#pw2').val() != $('#pw').val()){
+                $('.feedback-pw2').show()
+            }
+            if($('#pw2').val() == '' || $('#pw2').val() == $('#pw').val()){
+                $('.feedback-pw2').hide()
+            }
+        })
+        $('#pw2').focus(function(){
+            if($('#pw2').val() == '' || $('#pw2').val() == $('#pw').val()){
+                $('.feedback-pw2').hide()
+            }
+        })
+
+
+        
+        $('.btn').click(function(){
+            var key = 1
+
+            var id = $('#id').val()
+            var pw = $('#pw').val()
+            var pw2 = $('#pw2').val()
+
+            if($('#id').val() == '' || !(regex_id.test(id))){
+                $('.feedback-id').text('영문자 대/소문자, 숫자 포함 8 ~ 15자')
+                $('.feedback-id').show()
+                
+            }
+
+            if($('#pw').val() == ''|| !(regex_pw.test(pw))){
+                $('.feedback-pw').text('영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자')
+                $('.feedback-pw').show()
+                return
+            }
+
+            var email = $('#email').val()
+            var page = $('#page').val()
+            var address = $('#address').val()
+            
+            email = email + '@' + page
+            
+            //가상 메모리 디비에 저장
+            var User = `${id},${pw},${email},${address}`
+            
+            //저장
+            User_db.push(User)
+            console.log(User_db)
+
+            var id = $('#id').val('')
+            var pw = $('#pw').val('')
+            var pw2 = $('#pw2').val('')
+            var email = $('#email').val('')
+            var address = $('#address').val('')
+
+            event.preventDefault()
+        })
+
+
+    </script>
+  </body>
+</html>

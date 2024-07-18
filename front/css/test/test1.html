@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시험 1번</title>
+    <script src="../static/js/jquery.min.js"></script>
+
+    <style>
+        .container *{
+            vertical-align:middle;
+        }
+        .container label{
+            font-weight: bold;
+        }
+        .container textarea, #title_{
+            width: 300px;
+        }
+        hr{margin: 20px auto;}
+        .form-group{
+            margin: 10px auto;
+        }
+        
+        .gonggi{
+            background-color: lightsalmon;
+            width: 100%;
+            border: 1px solid black;
+        }
+        table button{
+            width: 80px;
+            height: 100%;
+        }
+        .tablein{
+            background-color: lightgoldenrodyellow;
+            text-align: left;
+            font-weight: normal;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-color: white;
+        }
+        /* lightsalmon lightgoldenrodyellow */
+    </style>
+</head>
+<body>
+    <form action="insert.no" method="post" class="container">
+        <fieldset>
+            <legend>공지사항 작성하기</legend>
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" name="title" id="title_" placeholder="제목을 입력하시오." required>
+                <label for="" style="color: red;" hidden id="invalid-feedback-title">반드시 작성해야 하는 내용입니다.</label>
+            </div>
+            <div class="form-group">
+                <label for="content" style="text-align: center;">내용</label>
+                <textarea name="content" rows="10" id="content_" class="form-control" placeholder="내용을 입력하시오." required></textarea>
+                <label for="" style="color: red;" hidden id="invalid-feedback-content">반드시 작성해야 하는 내용입니다.</label>
+            </div>
+            <div class="form-group">
+                <label for="uploadFile">첨부파일</label>
+                <input type="button" value="파일 선택" name="uploadFile"> 선택된 파일 없음
+            </div>
+            <div class="form-group">
+                <input type="button" value="작성하기" style="position: relative; left: 130px;" id="gopage">
+            </div>
+        </fieldset>
+    </form>
+    <hr>
+    
+    <table class="gonggi">
+        <thead>
+        <tr style="color: white; text-align: center; font-weight: bold;">
+          <th style="width: 40px;">번호</th>
+          <th colspan="2" style="width: 300px;">제목</th>
+          <th style="width: 90px;">작성자</th>
+          <th style="width: 100px;">작성일</th>
+          <th style="width: 60px;">조회수</th>
+        </tr>
+       </thead>
+        <tbody id="list">
+        <tr class="tablein">
+            <td>9</td>
+            <td>공지사항 제목 9</td>
+            <td style="width: 80px;"><button>바로가기</button></td>
+            <td>user01</td>
+            <td>2021-03-29</td>
+            <td>34</td>
+        </tr>
+        <tr class="tablein">
+            <td>6</td>
+            <td>공지사항 제목 6</td>
+            <td><button>바로가기</button></td>
+            <td>answ445</td>
+            <td>2021-03-12</td>
+            <td>67</td>
+        </tr>
+        <tr class="tablein">
+            <td>3</td>
+            <td>공지사항 제목 3</td>
+            <td><button>바로가기</button></td>
+            <td>testg12</td>
+            <td>2021-03-01</td>
+            <td>98</td>
+        </tr>
+        <tr class="tablein">
+            <td>2</td>
+            <td>공지사항 제목 2</td>
+            <td><button>바로가기</button></td>
+            <td>palwe3</td>
+            <td>2021-01-02</td>
+            <td>85</td>
+        </tr>
+        <tr class="tablein">
+            <td>1</td>
+            <td>공지사항 제목 1</td>
+            <td><button>바로가기</button></td>
+            <td>xml123</td>
+            <td>2021-12-24</td>
+            <td>124</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr style="color: white; text-align: center; font-weight: bold;">
+            <td colspan="4">전체 공지사항 갯수</td>
+            <td colspan="2" id="total_gonggi">5개</td>
+        </tr>
+        </tfoot>
+        
+      </table>
+
+
+
+
+    </table>
+       
+    <script>
+
+        //9번까지 작성하였기 때문에 사용할때는 10번 부터
+        //작성자 받아올 수가 없음
+        //조회수 늘려 줄 수가 없음
+        //번호가 9까지 있어서 따로 만들어줌
+        var count = 10 
+        //전체 공지가 5개 있어서 따로 만들어줌
+        var total = 5
+
+        $('#gopage').click(function(){
+
+            //내용 미작성시 보여줄 피드백 문구
+            if($('#title_').val() == ''){
+                $('#invalid-feedback-title').show()
+                return
+            }
+            if($('#content_').val() == ''){
+                $('#invalid-feedback-content').show()
+                return
+            }
+
+            //내용저장 및 초기화
+            //제목
+            var title = $('#title_').val()
+            $('#title_').val('')
+            //내용
+            var contents = $('#content_').val()
+            $('#content_').val('')
+            
+            //내용 작성시 피드백 문구 하이드
+            $('#invalid-feedback-title').hide()
+            $('#invalid-feedback-content').hide()
+
+            //list작성 쪽에 넘기기
+            list_maker(title, contents)
+            $('#total_gonggi').text(`${++total}개`)
+            console.log('This click event is done')
+        })
+
+        function list_maker(title, content){//초기 데이터 5개 때문에 tbody 위로 prepend되게되었음
+            $('#list').prepend(`
+            <tr class="tablein">
+                <td>${count++}</td>
+                <td>${title}</td>
+                <td><button>바로가기</button></td>
+                <td>admin</td>
+                <td>${dateStr}</td>
+                <td>0</td>
+            </tr>    
+            `)}
+
+
+
+        //일자정보 받아 올 수 있음
+        function convertDate(date){
+            var y = date.getFullYear()
+            var M = String(date.getMonth()).padStart(2,'0')
+            var d = String(date.getDate()).padStart(2,'0')
+            return `${y}-${M}-${d}`
+        }
+
+        var date = new Date()
+        var dateStr = convertDate(date);
+        // document.write(dateStr);
+
+    </script>
+</body>
+</html>
