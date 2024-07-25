@@ -244,3 +244,38 @@ REFERENCES `schedule` (
 	`sd_id`
 );
 
+
+
+-- 04 
+
+
+
+DROP TABLE IF EXISTS `ticketing_list`;
+
+CREATE TABLE `ticketing_list` (
+	`tl_id`	int primary key auto_increment	NOT NULL,
+	`tl_ti_id`	int	NOT NULL,
+	`tl_se_id`	int	NOT NULL
+);
+
+ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_ticketing_TO_ticketing_list_1` FOREIGN KEY (
+	`tl_ti_id`
+)
+REFERENCES `ticketing` (
+	`ti_id`
+);
+
+ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_seat_TO_ticketing_list_1` FOREIGN KEY (
+	`tl_se_id`
+)
+REFERENCES `seat` (
+	`se_id`
+);
+
+ALTER TABLE `cgv`.`schedule` 
+ADD COLUMN `sd_possible` INT NOT NULL AFTER `sd_sc_id`;
+
+
+
+
+
