@@ -2,6 +2,7 @@ package db.student.main;
 
 import java.util.Scanner;
 
+import db.student.controller.ScoreController;
 import db.student.controller.StudentController;
 import db.student.controller.SubjectController;
 
@@ -10,6 +11,7 @@ public class StudentManager{
 	private Scanner sc = new Scanner(System.in);
 	private StudentController studentController = new StudentController(sc);
 	private SubjectController subjectController = new SubjectController(sc);
+	private ScoreController scoreController = new ScoreController(sc);
 	
 	public void init() {
 		while (true) {
@@ -56,9 +58,9 @@ public class StudentManager{
 		
 		//수정 요구됨
 		if (M.equals("1")) studentController.updateStudent();
-		else if (M.equals("2")) ;
-		else if (M.equals("3")) ;
-		else if (M.equals("4")) ;
+		else if (M.equals("2")) scoreController.inserScore();
+		else if (M.equals("3")) scoreController.updateScore();
+		else if (M.equals("4")) scoreController.delectScore();
 		else if (M.equals("5")) break;
 		else if (M.equals("show")) showAll();
 		else System.out.println("[잘못된 입력]");

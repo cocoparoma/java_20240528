@@ -39,6 +39,11 @@
 	select distinct su_name from subject
 	</select>
 	
+	<select id="selectSubject" resultType="SubjectVO">
+	select distinct su_name from subject
+	</select>
+	
+	
 	
 	
 	
