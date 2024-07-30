@@ -63,7 +63,7 @@ CREATE TABLE `buy` (
 	`bu_id`	int primary key auto_increment	NOT NULL,
 	`bu_pr_id`	varchar(10)	NOT NULL,
 	`bu_me_id`	varchar(13)	NOT NULL,
-	`bu_amonut`	int	NOT NULL	DEFAULT 1,
+	`bu_amonut`	int	NOT NULL DEFAULT 0,
 	`bu_state`	varchar(10)	NOT NULL,
 	`bu_date`	datetime	NOT NULL
 );

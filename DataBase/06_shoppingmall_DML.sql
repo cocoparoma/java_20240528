@@ -33,5 +33,44 @@ insert into product select'SHO001', '썬 크룩스', '초 경량화된 요즘 �
 insert into product select'ACC001', '금 목거리', 'GOLD 그 자체 밝은 빛 아래 찬란이 빛나는 황금', 100000, ca_id from category where ca_name = '악세사리';
 
 
-select * from product;
+# abc123 회원이 1번 제품을 장바구니에 3개 담았을 때 쿼리
+insert into basket value(null, 'CL001' ,'abc123', 3);
+# abc123 회원이 1번 제품을 장바구니에 2개 담았을 때 쿼리
+update basket set ba_acunt = 2 where ba_pr_id = 'CL001' and ba_me_id = 'abc123';
+
+
+# abc123 회원이 ACC001 제품을 장바구니에 하나 담았을 때 쿼리
+insert into basket value(null, 'ACC001' ,'abc123', 1);
+# abc123 회원이 장바구니에 있는 모든 제품을 구매했을 때 필요한 쿼리
+insert into buy values
+(null, 'CL001', 'abc123', 3, '구매', now()),
+(null, 'ACC001', 'abc123', 1, '구매', now());
+delete from basket where ba_pr_id = 'CL001' and ba_me_id = 'abc123';
+delete from basket where ba_pr_id = 'ACC001' and ba_me_id = 'abc123';
+
+# abc123 회원이 pw : abc1234로 로그인 실패했을 때 쿼리
+update member set me_fail = me_fail + 1  where me_id = "abc123";
+
+# abc123 회원이 로그인 성공시
+update member set me_fail = 0 where me_id = "abc123";
+
+# abc123 회원이 비번찾기릂 시도해서 인증코드 123asd가 발급되야하는 상황의 쿼리 (시간제한10분)
+insert into code values('abc123', '123asd', date_add(now(), INTERVAL 5 minute));
+
+# 성공시
+delete from code where co_me_id = 'abc123';
+# 실패시
+update code set co_code = '089qwe', co_time = date_add(now(), INTERVAL 5 minute) where co_me_id = 'abc123';
+
+# abc123유저가 abc1234로 비번을 변경하였을 때 쿼리
+update member set me_pw = 'abc1234' where me_id = 'abc123';
+
+select * from member;
+select * from code;
+
+
+
+
+
+
 
