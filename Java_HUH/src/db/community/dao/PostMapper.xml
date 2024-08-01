@@ -26,8 +26,51 @@
 	
 	<insert id="insertPost" useGeneratedKeys="true" keyProperty="po.po_num">
 	insert into post(po_name, po_content, po_co_id, po_me_id) VALUEs ( #{po.po_name},#{po.po_content} , #{po.po_me_id},#{po_co_id});
-	
 	</insert>
+	
+	<select id="selectPostList" resultType="PostVO">
+	select * from post where po_co_id = #{cri.num} and po_name like concat('%', '#{cri.search}', '%')
+	</select>
+	
+	<select id="selectPost" resultType="PostVO">
+	select * from post where po_id = #{po_id}
+	</select>
+	
+	<select id="selectPostListCount" resultType="int">
+	select count(*) from post where po_co_id = #{cri.num} and po_name like concat('%', '#{cri.search}', '%')
+	limit #{cri.pageStart}, #{cri.pagePageNum}
+	</select>
+	
+	<delete id="deletePost">
+	delete from post where po_id = #{po_id}
+	</delete>
+	
+	<update id="updatePost">
+	update post set 
+		po_name = #{po.po_name},
+		po_content = #{po.po_content}
+	where
+		po_id = #{po.po_id}
+	</update>
+	
+	
+	<insert id="insertComment">
+	insert into comment(cm_id, cm_content, cm_po_id, cm_ori_id, cm_me_id)
+	select
+		IFNULL(max(cm_id),0) + 1, #{co.cm_content}, #{co.cm_po_id},
+		IFNULL(max(cn_id),0) + 1, #{co.cm_me_id}	
+	from comment
+	</insert>
+	
+	
+	<select id="selectCommentList" resultType="CommentVO">
+	select * from comment where cm_po_id = #{po_id}
+	</select>
+	
+	<update id="updatePostView">
+	update post set po_view = po_view + 1 where po_id = #{po_id}
+	</update>
+	
 	
 	
 	

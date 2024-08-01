@@ -2,10 +2,16 @@ package db.community.main;
 
 import java.util.Scanner;
 
+import javax.naming.directory.SearchControls;
+
 import db.community.controller.MemberController;
 import db.community.controller.PostController;
 import db.community.controller.PrintController;
 import db.community.model.vo.MemberVO;
+import db.community.model.vo.PostVO;
+import db.community.pagination.Criteria;
+import db.community.pagination.PageMaker;
+import db.community.pagination.PostCriteria;
 import program.program;
 
 public class ProgramImp implements program {
@@ -35,7 +41,7 @@ public class ProgramImp implements program {
 			} catch (Exception e) {
 				System.out.println("잘못된 입력입니다.");
 			}
-
+						
 			if (M.equals("3")) {
 				break;
 			}
@@ -99,16 +105,175 @@ public class ProgramImp implements program {
 			String M = scan.nextLine();
 			
 			runUser(M);
-
+			
+			if (M.equals("3")) {
+				break;
+			}
 		}
 	} // user done
 
 	private void runUser(String m) {
 		
 		if (m.equals("1")) postController.insertPost(member.getMe_id());
-		else if (m.equals("2"));
+		else if (m.equals("2")) Search();
 		else if (m.equals("3"));
 		else;
+		
+	}
+
+	private void Search() {
+		
+		String search = "";
+		
+		String M = "0";
+		
+		postController.printCommunityList();
+		PrintController.printBar();
+		System.out.print("커뮤니티 번호 선택\n>>");
+		String N = scan.nextLine();
+		
+		int coNum = Integer.parseInt(N);	
+		Criteria cri = new PostCriteria(1, "", coNum);
+		cri.setPerPageNum(2);
+		while(true) {
+			System.out.println(cri.getPage() + ": 결과 페이지");
+			PageMaker pm = postController.getPageMaker(cri, Integer.MAX_VALUE);
+			
+			// 컨트롤러가 검색어에 맞는 게시글 리스트를 출력
+			postController.printPostList(cri);
+			// 메뉴를 출력
+			PrintController.printPostMenu();
+			
+			M = scan.nextLine();
+			
+			runPostMenu(M, pm);
+			
+			if (M.equals("5")) {
+				break;
+			}
+			
+			
+		}
+		
+	}
+
+	private void runPostMenu(String M, PageMaker pm) {
+		if (M.equals("1")) {
+			page(pm, -1);
+		} else if (M.equals("2")) {
+			page(pm, 1);
+		} else if (M.equals("3")) {
+			
+		} else if (M.equals("4")) {
+			detail();
+		} else if (M.equals("5")) {
+			PrintController.prev();
+		} else {
+			PrintController.wrongMenu();
+		}
+		
+	}
+
+	private void detail() {
+		PostVO post = postController.printPostDetail();
+		PrintController.printBar();
+		
+		if (post == null) {
+			return;
+		}
+		
+		String M = "0";
+		while (true) {
+			PrintController.printPostSubMenu(post.getPo_me_id().equals(member.getMe_id()));
+			M = scan.nextLine();
+			PrintController.printBar();
+			
+			runPostSubMenu(M, post);
+			PrintController.printBar();
+			
+			// 게시글 삭제시 더 이상 머물 필요가 없어지기에 
+			if (post.getPo_id() == 0) {
+				break;
+			}
+			
+			if (M.equals("3")) {
+				break;
+			}
+		}
+	}
+
+	private void runPostSubMenu(String m, PostVO post) {
+		switch (m) {
+		case "1":
+			postController.printCommentList(post);
+			break;
+		case "2":
+			postController.insertComment(post, member.getMe_id());
+			break;
+		case "3":
+			PrintController.prev();
+			break;
+		case "4":
+			postUpdate(post);
+			break;
+		case "5":
+			postDelete(post);
+			break;
+		default:
+			PrintController.wrongMenu();
+			break;
+		}
+		
+	}
+
+	private void postUpdate(PostVO post) {
+		if (post == null) {
+			return;
+		}
+		//작성자 확인
+		if (!post.getPo_me_id().equals(member.getMe_id())) {
+			PrintController.notWriter();
+			return;
+		}
+		if (postController.updatePost(post.getPo_id())) {
+			System.out.println("게시글 수정 완료");
+			post.setPo_id(0);
+		} else {
+			System.out.println("게시글 수정 실패");
+		}
+		
+	}
+
+	private void postDelete(PostVO post) {
+		
+		if (post == null) {
+			return;
+		}
+		//작성자 확인
+		if (!post.getPo_me_id().equals(member.getMe_id())) {
+			PrintController.notWriter();
+			return;
+		}
+		if (postController.deletePost(post.getPo_id())) {
+			System.out.println("게시글 삭제 완료");
+			post.setPo_id(0);
+		} else {
+			System.out.println("게시글 삭제 실패");
+		}
+		
+	}
+
+	private void page(PageMaker pm, int add) {
+		int page = pm.getCri().getPage();
+		if (add > 0 && pm.isNext()) {
+			pm.getCri().setPage( page +1 ) ;
+		} else if (add < 0 && pm.isPrev()) {
+			pm.getCri().setPage( page - 1 );
+		} else if (add>0) {
+			System.out.println("마지막 페이지 입니다.");
+		} else {
+			System.out.println("첫 페이지 입니다.");
+		}
 		
 	}
 

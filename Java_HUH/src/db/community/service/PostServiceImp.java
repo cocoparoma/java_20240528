@@ -4,14 +4,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.xml.stream.events.Comment;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.community.dao.PostDAO;
+import db.community.model.vo.CommentVO;
 import db.community.model.vo.CommunityVO;
 import db.community.model.vo.PostVO;
+import db.community.pagination.Criteria;
 
 public class PostServiceImp implements PostService {
 
@@ -106,11 +110,12 @@ public class PostServiceImp implements PostService {
 		if (!checkString(post.getPo_content()))
 			return false;
 		
-//		System.out.println(post); //기본키 0
-		boolean res =  postDao.insertPost(post);
-//		System.out.println(post); //기본키가 바뀜
-		
-		return res;
+		try {
+			return postDao.insertPost(post);			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 
@@ -124,6 +129,68 @@ public class PostServiceImp implements PostService {
 	public List<CommunityVO> getCommunityList() {
 
 		return postDao.selectCommunityList();
+	}
+
+	@Override
+	public List<PostVO> getPostList(Criteria cri) {
+		
+		if (cri == null) {
+			throw new RuntimeException();
+		}
+		
+		return postDao.selectPostList(cri);
+	}
+
+	@Override
+	public PostVO getPost(int co_idint) {
+		
+		return postDao.selectPost(co_idint);	
+	}
+
+	@Override
+	public int selectPostListTotalCount(Criteria cri) {
+		if (cri == null) {
+			return 0;
+		}
+		return postDao.selectPostListCount(cri);
+	}
+
+	@Override
+	public boolean deletePost(int po_id) {
+		return postDao.deletePost(po_id);
+	}
+
+	@Override
+	public boolean updatePost(PostVO post) {
+		if (post == null) {
+			return false;
+		}
+		if (!checkString(post.getPo_name()) || !checkString(post.getPo_content())) {
+			return false;
+			
+		}
+		return postDao.updatePost(post);
+	}
+
+	@Override
+	public boolean insertComment(CommentVO co) {
+		if (co == null) {
+			return false;
+		}
+		
+		
+		return postDao.insertComment(co);
+	}
+
+	@Override
+	public List<CommentVO> getCommentList(int po_id) {
+		
+		return postDao.selectCommentList(po_id);
+	}
+
+	@Override
+	public void updatePostView(int co_idint) {
+		postDao.updatePostView(co_idint);
 	}
 
 }
