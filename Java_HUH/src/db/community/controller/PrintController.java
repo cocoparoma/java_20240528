@@ -95,5 +95,11 @@ public class PrintController {
 	public static void notWriter() {
 		System.out.println("작성자가 아닙니다.");
 	}
+
+
+	public static void initMenu() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

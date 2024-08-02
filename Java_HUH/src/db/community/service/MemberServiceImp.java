@@ -14,6 +14,7 @@ import db.community.model.vo.MemberVO;
 
 public class MemberServiceImp implements MemberService {
 	
+	
 	private MemberDAO memberDao;
 	
 	
