@@ -30,6 +30,34 @@ insert into reasonlist VALUES
 ('저작권 위반'),
 ('IP 우회');
 
+insert into privacy(pr_id, pr_pw, pr_gender, pr_birth_day, pr_phone, pr_email, pr_au_key)
+VALUES ("cocopam123", "cocopam123", "남", "1999-01-18", "010-2332-4771","cocopam123@naver.com", "user");
+
+insert into privacy(pr_id, pr_pw, pr_gender, pr_birth_day, pr_phone, pr_email, pr_au_key)
+VALUES ("qwer1234", "qwer1234", "여", "2000-12-30", "010-1111-2222","qwer1234@naver.com", "user");
+
+select * from privacy;
+select Ifnull(pr_id,0) from privacy WHERE pr_id = "cocopam123";
+update privacy SET pr_failed = pr_failed + 1 WHERE pr_id = "cocopam123";
 
 
-select * from reasonlist;
+
+insert into border(bo_title) VALUES ("운동");
+
+select * from border;
+
+delete FROM border where bo_title = "운동";
+
+select * FROM border WHERE bo_title = "축구";
+
+select * FROM border where bo_title = "운동";
+
+update border set
+bo_oldtitle = bo_title,
+bo_title = "독서",
+bo_detail = "책을 읽어보자"
+WHERE
+bo_title = "운동";
+
+-- 운동 border 에 축구 category 이런식으로 세분화 하는 부분입니다.
+--  게임 border 에 엘든링, 서든어택, 등등의 카테고리를 가지게 할 수 있습니다.

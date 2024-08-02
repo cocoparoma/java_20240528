@@ -12,13 +12,13 @@ CREATE TABLE `privacy` (
 	`pr_id`	varchar(15)	NOT NULL,
 	`pr_pw`	varchar(15)	NOT NULL,
 	`pr_gender`	varchar(5)	NOT NULL,
-	`pr_birth_day`	varchar(8)	NOT NULL,
+	`pr_birth_day`	varchar(15)	NOT NULL,
 	`pr_phone`	varchar(20)	NOT NULL,
 	`pr_email`	varchar(100)	NOT NULL,
 	`pr_au_key`	varchar(5)	NOT NULL,
 	`pr_failed`	int	NOT NULL	DEFAULT 0,
 	`pr_st_key`	VARCHAR(10)	NOT NULL DEFAULT 'act',
-	`pr_re_key`	varchar(50)	NOT NULL,
+	`pr_re_key`	varchar(50) NULL,
 	`pr_autologin`	tinyint	NOT NULL	DEFAULT 0,
 	`pr_stop`	datetime	NULL
 );
