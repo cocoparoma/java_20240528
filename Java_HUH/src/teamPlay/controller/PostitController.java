@@ -1,12 +1,12 @@
 package teamPlay.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import db.community.model.vo.PostVO;
 import teamPlay.model.vo.BorderVO;
+import teamPlay.model.vo.CategoryVO;
 import teamPlay.model.vo.PostitVO;
+import teamPlay.model.vo.PrivacyVO;
 import teamPlay.service.PostitService;
 import teamPlay.service.PostitServiceImp;
 
@@ -21,24 +21,6 @@ public class PostitController {
 		this.scan = scan;
 	}
 
-	public void writePostIt(String input_String) {
-		// id@@content@@ 뭐가있지?
-		
-		
-	
-		
-		
-		
-		
-		
-	
-		
-		
-		
-	}
-
-	
-	
 	
 	// Administrator only
 	public boolean createNewBorder(String newBorder) {
@@ -124,13 +106,65 @@ public class PostitController {
 		return postitService.selectBorderListOutput();
 	}
 
-	public ArrayList<PostitVO> postListOutput(String input_String) {
-		// input_string에 페이지가 들어가있어야 함
-		String arr[] = input_String.split("@@");
-		
-		
-		
-		return null;
+	public List<PostitVO> postListOutput(String input) {
+
+		return postitService.selectPostListOutput(input);
 	}
+
+	public List<CategoryVO> categoryListOutput(String input) {
+		
+		return postitService.selectCategoryListOutput(input);
+	}
+
+	public PostitVO postitDetail(int postN) {
+		
+		return postitService.selectPostOutput(postN);
+	}
+
+	public void postInsert(String input) {
+		//border category id title content
+		String arr[] = input.split("@@");
+
+		BorderVO borderGetN =  selectBorder(arr[0]);
+		int border = borderGetN.getBo_number();
+		
+		CategoryVO categoryGetN = selectCategory(arr[1]);
+		int category = categoryGetN.getCa_number();
+		
+		PrivacyVO privacyGetN = selectId(arr[2]);
+		int id = privacyGetN.getPr_number();
+
+		String title = arr[3];
+		
+		String content = arr[4];
+		
+//		PostitVO postInsertPhase = new PostitVO();
+		
+		postitService.insertPostInput(border, category, id, title, content);
+		
+		
+	}
+
+
+	private PrivacyVO selectId(String input) {
+		
+		if (input.length() == 0) {
+			return null;
+		}
+		return postitService.selectId(input);
+	}
+
+
+	private CategoryVO selectCategory(String input) {
+		
+		if (input.length() == 0 || input == null) {
+			return null;
+		}
+		return postitService.selectCategory(input);
+	}
+
+
+
+ 
 
 }

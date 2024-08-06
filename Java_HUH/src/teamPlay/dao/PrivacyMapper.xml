@@ -25,6 +25,8 @@
 	update privacy SET pr_failed = 0 WHERE pr_id = #{pr_id}
 	</update>
 	
-
+	
+	
+	
 	
 </mapper>

@@ -11,6 +11,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import teamPlay.dao.PostitDAO;
 import teamPlay.model.vo.BorderVO;
+import teamPlay.model.vo.CategoryVO;
+import teamPlay.model.vo.PostitVO;
+import teamPlay.model.vo.PrivacyVO;
 
 
 
@@ -88,5 +91,41 @@ public class PostitServiceImp implements PostitService{
 	public List<BorderVO> selectBorderListOutput() {
 		
 		return postitDao.selectBorderListOutput();
+	}
+
+	@Override
+	public List<CategoryVO> selectCategoryListOutput(String input) {
+		
+		return postitDao.selectCategoryListOutput(input);
+	}
+
+	@Override
+	public List<PostitVO> selectPostListOutput(String input) {
+		
+		return postitDao.selectPostListOutput(input);
+	}
+
+	@Override
+	public PostitVO selectPostOutput(int postN) {
+		
+		return postitDao.selectPostOutput(postN);
+	}
+
+	@Override
+	public CategoryVO selectCategory(String input) {
+		
+		return postitDao.setectCategory(input);
+	}
+
+	@Override
+	public void insertPostInput(int border, int category, int id, String title, String content) {
+		
+		postitDao.insetPostInput(border, category, id, title, content);
+	}
+
+	@Override
+	public PrivacyVO selectId(String input) {
+		
+		return postitDao.selectId(input);
 	}
 }

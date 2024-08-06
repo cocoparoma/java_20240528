@@ -1,12 +1,15 @@
 package teamPlay.model.vo;
 
+import java.io.Serializable;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BorderVO {
+public class BorderVO implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int bo_number;// int AI PK
 	private String bo_title;// varchar(30) => 필수
 	private int bo_counter;// int
@@ -15,10 +18,10 @@ public class BorderVO {
 	
 	
 	
-	@Override
-	public String toString() {
-		return bo_number+"@@"+bo_title;
-	}
+//	@Override
+//	public String toString() {
+//		return bo_number+"@@"+bo_title;
+//	}
 
 	
 	

@@ -1,17 +1,12 @@
 package teamPlay.main;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +14,8 @@ import teamPlay.controller.PostitController;
 import teamPlay.controller.PrintController;
 import teamPlay.controller.PrivacyController;
 import teamPlay.model.vo.BorderVO;
+import teamPlay.model.vo.CategoryVO;
+import teamPlay.model.vo.Message;
 import teamPlay.model.vo.PostitVO;
 import teamPlay.model.vo.PrivacyVO;
 
@@ -28,23 +25,26 @@ public class ServerRunner {
 	private PrivacyController privacyController = new PrivacyController(scan);
 	private PostitController postitController = new PostitController(scan);
 	
+	public ServerRunner() {
+		
+	}	
 	
 	@SuppressWarnings("resource")
 	public void serverRun() {
+		
+		
 
 		final int PORT = 9001;
 		ServerSocket server = null;
 		Socket socket = null;
 
-//		ObjectInputStream ois = null;
-//		InputStream is = null;
-//		
-//		ObjectOutputStream oos = null;
-//		OutputStream os = null;
+		ObjectOutputStream oos = null;
+		OutputStream os = null;
+		System.out.println("[ObjectOutputStream ... ready]");
 		
-		BufferedReader in = null;	
-		PrintWriter out = null;	
-
+		ObjectInputStream ois = null;
+		InputStream is = null;
+		System.out.println("[ObjectInputStream ... ready]");
 
 		try {
 			server = new ServerSocket(PORT);
@@ -58,84 +58,117 @@ public class ServerRunner {
 				socket = server.accept();
 				System.out.println("[" + socket.getInetAddress() + " : User Connected]");
 				
-//				os = socket.getOutputStream();
-//				oos = new ObjectOutputStream(os); //이걸 사용하세용
-//				// 인풋스트림 (받아오는것)
-//				is = socket.getInputStream();
-//				ois = new ObjectInputStream(is); //이걸 사용하세용
-//				// 아웃풋스트림 (건내주는것)
-	            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));   
-	            out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
+				os = socket.getOutputStream();
+				oos = new ObjectOutputStream(os); 
+				System.out.println("[ObjectOntputStream ... ok]");
 				
+				is = socket.getInputStream();
+				ois = new ObjectInputStream(is); 
+				System.out.println("[ObjectInputStream ... ok]");
+
+				Message orderMsg = (Message)ois.readObject();
+				String order = orderMsg.getText();
+				System.out.println("[" + order +" : get orderMsg ... ok]");
 				
-				//받을 때 까지 기다립니다.
-//				String order = ois.readUTF(); // 요청 사항
-//				String input_String = ois.readUTF(); // 데이터 (String 값을 받습니다.)
-				
-				String order = in.readLine();
-				String input_String  = in.readLine();
+				Message inputMsg = (Message)ois.readObject();
+				String input = inputMsg.getText();
+				System.out.println("[" + input +" : get inputData ... ok]");
+
 				// cutter @@
 
-				System.out.println(order + "@@" + input_String);
-				
-				order = order.trim(); // 클라에서 String 값을 2개 줍니다 하나는 오더 하나는 데이터 입니다.
+				order = order.trim();
 
 				switch (order) {
 				case "$login":
 					//id@@pw
 					// 로그인 privacyVO 데이터 넘어옴
-					PrivacyVO privacy = privacyController.loginUser(input_String);
+					PrivacyVO privacy = privacyController.loginUser(input);
+					System.out.println("[id check]");
 					if (privacy != null) { //로그인 성공
 						String time =  PrintController.printNowDayandTime();
-//						oos.writeUTF(privacy.getPr_id()+"@@"+time); //로그인 정보 (아이디) 를 보내주어야 합니다.
-						out.write(privacy.getPr_id()+"@@"+time);
-						out.flush();
+						System.out.println("[Success Login]");
+						
+						Message idTokenMsg = new Message(privacy.getPr_id()+"@@"+time);
+						oos.writeObject(idTokenMsg);
+						System.out.println("["+idTokenMsg.getText()+"@@"+time+" : send ]");
+						
 						privacyController.succeedLogin(privacy.getPr_id());
+						System.out.println("[fail token reset]");
 					} else {
-						String failid = checkID(input_String);
+						String failid = checkID(input);
 						String arr[] = failid.split("@@");
+						System.out.println("[Fail Login]");
 						
 						if (arr[1].equals("@@badID")) {
 							privacyController.failedid(arr[0]);
 						}
-						
-//						oos.writeUTF("$spread@@wrongLogin");
+						Message failLoginMsg = new Message("$spread@@wrongLogin");
+						oos.writeObject(failLoginMsg);
+						System.out.println("[fail msg send]");
 					}
-					
+					System.out.println("[Login phase done]");
 					break;
 				case "$join":
-					System.out.println("join debug 1");
-					if (privacyController.joinUser(input_String)) {
-						System.out.println("join debug 2");
-//						oos.writeUTF("$spread@@Joinsuccess");
-						out.println("$spread@@Joinsuccess");
-						
+					System.out.println("[join phase start]");
+					if (privacyController.joinUser(input)) {
+						System.out.println("[Success Join]");
+						Message successJoinMsg = new Message("$spread@@Joinsuccess");
+						oos.writeObject(successJoinMsg);
+						System.out.println("[Sending : Success Join]");
+
 					} else {
-						System.out.println("join debug 3");
-						out.println("$spread@@Joinfail");
-//						oos.writeUTF("$spread@@Joinfail");
+						System.out.println("[Fail Join]");
+						Message failJoinMsg = new Message("$spread@@Joinsuccess");
+						oos.writeObject(failJoinMsg);
+						System.out.println("[Sending : Fail Join]");
 					}
-					System.out.println("join debug 4");
+					System.out.println("[Join phase done]");
 					break;
 				case "$borderListSelect":
+					System.out.println("[send border list phase start]");
 					List<BorderVO> listBorderVO = null;
 					listBorderVO = postitController.borderListOutput();
-//					oos.writeObject(listBorderVO);// object 전송입니다. 잘 받아주어야 해용
-//					oos.writeUTF("borderList");// 임시
+					System.out.println("[get border list to DB]");
+					
+					oos.writeObject(listBorderVO);
+					System.out.println("[sending Border List]");
+					
+					System.out.println("[send border list phase done]");
 					break;
 					
 				case "$categoryListSelect":
+					System.out.println("[send category list phase start]");
+					List<CategoryVO> categoryList = null;
+					categoryList = postitController.categoryListOutput(input);
+					System.out.println("[get Category list to DB]");
 					
-//					oos.writeUTF("categoryList");// 임시
+					oos.writeObject(categoryList);
+					
 					break;
 				case "$showPostList"://전체 글 보기
-					ArrayList<PostitVO> listPostVO = null;
-					listPostVO = postitController.postListOutput(input_String); // page 받아줘야함
-//					oos.writeObject(listPostVO);
+					List<PostitVO> listPostVO = null;
+					listPostVO = postitController.postListOutput(input); // page 받아줘야함
+					oos.writeObject(listPostVO);
 					break;
-					
+				case "$postDetail":
+					System.out.println("[send Post Detail phase start]");
+					int postN = Integer.parseInt(input);
+					PostitVO post = postitController.postitDetail(postN);
+					if (post == null) {
+						Message postFail = new Message("postIsNull");
+						oos.writeObject(post);
+						System.out.println("[Post Detail is null]");
+					} else {
+						oos.writeObject(post);
+						System.out.println("Post Detail Sending ok");
+					}
+					System.out.println("[send Post Detail phase Done]");
+					break;
 				case "$postInsert":
-					postitController.writePostIt(input_String);
+					System.out.println("[send Post Insert phase start]");
+					postitController.postInsert(input);
+					
+					System.out.println("[send Post Insert phase Done]");
 					break;
 				case "$postUpdate":
 					break;
@@ -157,21 +190,22 @@ public class ServerRunner {
 					
 				} // switch done
 				
-				out.flush();
-//				ois.close();
-//				is.close();
+				os.close();
+				oos.close();
+				ois.close();
+				is.close();
 				socket.close();
-				System.out.println("[DisConnected]");
+				System.out.println("[ " + socket + " : DisConnected]");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				out.flush();
-//				is.close();
-//				ois.close();
+				os.close();
+				oos.close();
+				is.close();
+				ois.close();
 				server.close();
-//				serverRun();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

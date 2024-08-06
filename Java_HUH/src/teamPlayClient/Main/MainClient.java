@@ -40,7 +40,7 @@ public class MainClient {
 
 		while (flag == 1) {
 
-			PrintClientController.printAfterLoginMenu();
+			PrintClientController.printAfterLoginMenu(border, category);
 
 			M = scan.nextLine();
 
@@ -57,21 +57,72 @@ public class MainClient {
 
 	private void runAfterLogin(String M) {
 		if (M.equals("1")) {
-			System.out.println("*--- 보드선택 ---*");
-			client.ClientRun("$borderListSelect", "getList");
+			System.out.println("*--- 보드 선택 ---*");
+			border = client.ClientRun("$borderListSelect", "getList");
 			
 		} else if (M.equals("2")) {
 			System.out.println("*--- 카테고리 선택 ---*");
+			if (border.length() == 0) {
+				System.out.println("[Border is null]");
+				return;
+			}
+			category = client.ClientRun("$categoryListSelect", border);
 
 		} else if (M.equals("3")) {
 			System.out.println("*--- 게시글 보기 ---*");
-
+			if (border.length() == 0 || category.length() == 0) {
+				System.out.println("[Border or Category is null]");
+				return;
+			}
+			client.ClientRun("$showPostList", category);
 		} else if (M.equals("4")) {
 			System.out.println("*--- 게시글 선택 ---*");
+			if (border.length() == 0 || category.length() == 0) {
+				System.out.println("[Border or Category is null]");
+				return;
+			}
+			System.out.println("* --- 게시글 번호");
+			PrintClientController.printBar();
+			PrintClientController.printRequestAnswer();
+			String postNumber = scan.nextLine();
+			
+			try {
+				int test = Integer.parseInt(postNumber);
+			} catch (Exception e) {
+				PrintClientController.printWrongMSG();
+				return;
+			}
 
+			client.ClientRun("$postDetail", postNumber);
 		} else if (M.equals("5")) {
 			System.out.println("*--- 게시글 작성 ---*");
-
+			//객체로 만들어서 주어야 좋은데 수정하기에 시간이 없음 test 요구됨
+			if (border.length() == 0 || category.length() == 0) {
+				System.out.println("[Border or Category is null]");
+				return;
+			}			
+			String getid[] = LoginToken.split("@@");
+			String idString = getid[0];
+			
+			PrintClientController.printBar();
+			System.out.println("* --- 제목을 적어보세요 !");
+			String insertPostTitle = ""; 
+			insertPostTitle = scan.nextLine();
+			
+			PrintClientController.printBar();
+			System.out.println("* --- 내용을 적어보세요 !");
+			String insertPostContent = "";
+			insertPostContent =	scan.nextLine();
+			
+			if (insertPostTitle.length() == 0 || insertPostContent.length() == 0) {
+				System.out.println("[Title or Content is null]");
+				return;
+			}
+			
+			String postInsertData = border+"@@"+category+"@@"+idString+"@@"+insertPostTitle+"@@"+insertPostContent;
+			
+			
+			client.ClientRun("$postInsert", postInsertData);
 		} else if (M.equals("6")) {
 			System.out.println("*--- 게시글 삭제 ---*");
 

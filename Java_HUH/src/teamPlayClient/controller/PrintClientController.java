@@ -18,9 +18,20 @@ public class PrintClientController {
 		System.out.print(">>");
 	}
 
-	public static void printAfterLoginMenu() {
+	public static void printAfterLoginMenu(String border, String category) {
 		printBar();
-		System.out.println("1. 보드 선택\n2. 카테고리 선택\n3. 게시글 보기");
+		if (border.length() == 0) {
+			System.out.println("1. 보드 선택 : 미선택");
+		} else {
+			System.out.println("1. 보드 선택 : " + border);
+		}
+		
+		if (category.length() == 0) {
+			System.out.println("2. 카테고리 선택 : 미선택");
+		} else {
+			System.out.println("2. 카테고리 선택 : " + category);
+		}
+		System.out.println("3. 게시글 보기");
 		System.out.println("4. 게시글 선택\n5. 게시글 작성\n6. 게시글 삭제");
 		System.out.println("7. 게시글 수정\n8. 댓글 작성\n9. 댓글 삭제");
 		System.out.println("\n0. or exit. 종료");
@@ -30,20 +41,20 @@ public class PrintClientController {
 
 	public static void printExit() {
 		printBar();
-		System.out.println(" -- [Exit program] -- ");
+		System.out.println("---[Exit program]---");
 		printBar();
 	}
 
 	public static void printWrongMSG() {
 		printBar();
-		System.out.println(" -- [Wrong input] -- ");
+		System.out.println("---[Wrong input]---");
 		printBar();
 		
 	}
 
 	public static void printLoginSuccess() {
 		printBar();
-		System.out.println(" -- [Login Success!] -- ");
+		System.out.println("---[Login Success!]---");
 		printBar();
 		
 	}

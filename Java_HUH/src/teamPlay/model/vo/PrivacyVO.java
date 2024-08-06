@@ -1,5 +1,6 @@
 package teamPlay.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import lombok.Data;
@@ -7,9 +8,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PrivacyVO {
+public class PrivacyVO  implements Serializable {
 	
-
+	private static final long serialVersionUID = 1L;
 	private int pr_number; // AI PK 
 	private String pr_id; //varchar(15) 필수
 	private String pr_pw; //varchar(15) 필수
