@@ -197,6 +197,7 @@ public class Client {
 				PrintClientController.printBar();
 				postList.forEach((pl)->System.out.println("번호:" +pl.getPo_number()+"|" +pl.getPo_title() +"|작성일:"+ pl.getPo_date()));
 				PrintClientController.printBar();
+				PrintClientController.zeroToNext(scan);
 				System.out.println("[get Post List Phase Done]");
 				break;
 				
@@ -220,13 +221,8 @@ public class Client {
 					System.out.println("번호:" +post.getPo_number()+"|" +post.getPo_title() +"|작성일:"+ post.getPo_date());
 					System.out.println(post.getPo_content());
 					PrintClientController.printBar();
-					for(;;) {
-						System.out.println("0. or exit. to next");
-						String M = scan.nextLine();
-						if (M.equals("0") || M.equals("exit")) {
-							break;
-						}
-					}
+
+					PrintClientController.zeroToNext(scan);
 				} catch (Exception e) {
 					postFail = (Message)ois.readObject();
 					System.out.println("["+postFail.getText()+"]");
@@ -249,6 +245,22 @@ public class Client {
 				
 				System.out.println("[get Post Insert Phase Done]");
 				break;
+			case "$postDelete":
+				System.out.println("[get Post Delete Phase Start]");
+				Message setPostDelete = new Message("$postDelete");
+				oos.writeObject(setPostDelete);
+				System.out.println("[send order : $postDelete]");
+				
+				Message setPostDeleteData = new Message(data);
+				
+				oos.writeObject(setPostDeleteData);
+				System.out.println();
+				
+				
+				System.out.println("[get Post Delete Phase Done]");
+				break;
+				
+			
 			default:
 				break;
 			}

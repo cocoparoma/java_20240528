@@ -125,7 +125,15 @@ public class MainClient {
 			client.ClientRun("$postInsert", postInsertData);
 		} else if (M.equals("6")) {
 			System.out.println("*--- 게시글 삭제 ---*");
-
+			
+			PrintClientController.printBar();
+			System.out.println("* --- 삭제할 게시글을 입력하세요");
+			PrintClientController.printBar();
+			PrintClientController.printRequestAnswer();
+			
+			String DeleteStr = scan.nextLine();
+			
+			client.ClientRun("$postDelete", DeleteStr);
 		} else if (M.equals("7")) {
 			System.out.println("*--- 게시글 수정 ---*");
 

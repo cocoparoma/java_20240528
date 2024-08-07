@@ -1,5 +1,7 @@
 package teamPlayClient.controller;
 
+import java.util.Scanner;
+
 public class PrintClientController {
 
 	public static void printMainMenu() {
@@ -56,6 +58,17 @@ public class PrintClientController {
 		printBar();
 		System.out.println("---[Login Success!]---");
 		printBar();
+		
+	}
+
+	public static void zeroToNext(Scanner scan) {
+		for(;;) {
+			System.out.println("0. or exit. to next");
+			String M = scan.nextLine();
+			if (M.equals("0") || M.equals("exit")) {
+				break;
+			}
+		}
 		
 	}
 }

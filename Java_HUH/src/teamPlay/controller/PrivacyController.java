@@ -67,6 +67,15 @@ public class PrivacyController {
 			String email = arr[5];
 			String authority = "user";
 			
+			for(int i = 0  ; i < arr.length ;  i++) {
+				if(arr[i].length() == 0) {
+					
+					System.out.println("join fail NullPointExeption");
+					return false;
+				}
+				
+			}
+			
 			user = new PrivacyVO(id, pw, gender, birthday, phone, email, authority);
 		} catch (Exception e) {
 			e.printStackTrace();
