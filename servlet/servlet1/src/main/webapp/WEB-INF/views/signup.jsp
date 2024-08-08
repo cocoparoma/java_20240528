@@ -1,0 +1,105 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+
+	
+	<style>
+		.error{color:red;}
+		
+		
+	</style>
+
+
+
+</head>
+<body>
+
+	<div class="container">
+		<h1 class="mt-3">회원가입</h1>
+		<form action="<%=request.getContextPath()%>/signup" method="post" id="form">
+			<div class="form-group">
+				<label for="id">아이디:</label>
+				<input type="text" class="form-control" id="id" name="id">
+			</div>
+			<div class="form-group">
+				<label for="pw">비번:</label> 
+				<input type="password" class="form-control" id="pw" name="pw">
+			</div>
+			<div class="form-group">
+				<label for="pw2">비번확인:</label>
+				<input type="password" class="form-control" id="pw2" name="pw2">
+			</div>
+			<div class="form-group">
+				<label for="email">이메일:</label>
+				<input type="email" class="form-control" id="email" name="email">
+			</div>
+			<button type="submit" class="btn btn-outline-success col-12">회원가입</button>
+		</form>
+	</div>
+
+	<script>
+		$('#form').validate({
+			rules : {
+				id : {
+					required : true,
+					regex : /^\w{6,13}$/
+				},
+				pw : {
+					required : true,
+					regex : /^[a-zA-Z0-9!@#$]{6,15}$/
+				},
+				pw2 : {
+					equalTo : pw
+				},
+				email : {
+					required : true,
+					email : true
+				}
+			},
+			/*
+			messages : 유효성 검사가 맞지 않을 때 출력할 메세지들. 객체
+				- 최대, 최소 글자의 값을 가져오려면 {0} 형태로 사용하면 됨
+			 */
+			messages : {
+				id : {
+					required : '필수 항목입니다.',
+					regex : '아이디는 영어, 숫자만 가능하며, 6~13자이어야 합니다.'
+				},
+				pw : {
+					required : '필수 항목입니다.',
+					regex : '아이디는 영어, 숫자, 특수문자(!@#$)만 가능하며, 6~15자이어야 합니다.'
+				},
+				pw2 : {
+					equalTo : '비번과 일치하지 않습니다.'
+				},
+				email : {
+					required :'필수 항목입니다.',
+					email : 'email 형식이 아닙니다'
+				}
+			},
+			/*
+			submitHandler : 유효성 검사에 성공하면 전송하기 전 확인할 작업을 처리하는 속성. 함수
+			 */
+			submitHandler : function() {
+
+				return true;
+			}
+		});
+		$.validator.addMethod('regex', function(value, element, regex) {
+			var re = new RegExp(regex);
+			return this.optional(element) || re.test(value);
+		}, "정규표현식을 확인하세요.");
+	</script>
+
+</body>
+</html>
