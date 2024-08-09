@@ -18,4 +18,6 @@ public interface PostDAO {
 
 	int selectPostTotalCount(@Param("cri")Criteria cri);
 
+	PostVO getPost(@Param("po_id")int poId);
+
 }

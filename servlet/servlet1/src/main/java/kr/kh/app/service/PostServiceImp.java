@@ -79,5 +79,16 @@ public class PostServiceImp implements PostService{
 		
 		return new PageMaker(totalCount, displayPageNum, cri);
 	}
+
+
+
+	@Override
+	public PostVO getPost(int poId) {
+		if (poId == 0) {
+			throw new RuntimeException();
+		}
+		
+		return postDao.getPost(poId);
+	}
 	
 }

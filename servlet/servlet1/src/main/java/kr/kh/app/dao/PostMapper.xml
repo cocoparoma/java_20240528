@@ -18,8 +18,10 @@
 
 	<select id="selectPostTotalCount" resultType="int">
 	select count(*) from post where po_co_id = #{cri.co_id}
-	
 	</select>
 	
+	<select id="getPost" resultType="PostVO">
+	select * from post where po_id = {po_id}
+	</select>
 
 </mapper>
