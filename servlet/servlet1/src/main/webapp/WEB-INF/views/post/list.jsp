@@ -20,8 +20,27 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
+
 	
 	<div class="container">
+          
+	<form class="input-group mb-3" action="<c:url value="/post/list"/>">
+	  
+		  <div class="input-group-prepend">
+			  	<select class="form-control" name="type">
+			  		<c:if test="${pm.cri.type=='all'}">selected</c:if>
+			  		<option value="all" <c:if test="${pm.cri.type=='all'}">selected</c:if>>전체</option>
+			  		<option value="name" <c:if test="${pm.cri.type=='name'}">selected</c:if>>제목</option>
+			  		<option value="id" <c:if test="${pm.cri.type=='id'}">selected</c:if>>작성자</option>
+			  	</select>
+		  </div>
+		  
+		  <input type="text" class="form-control" placeholder="검색어를 입력하세요." name="search" value="${pm.cri.search }">
+  		  <div class="input-group-append">
+		   	 <button class="btn btn-primary" type="submit">검색</button>
+	 	   </div>
+	 	   <input type="hidden" name="co_id" value = "${pm.cri.co_id}">
+	</form>
           
   <table class="table table-hover">
     <thead>
@@ -36,13 +55,11 @@
     </thead>
     <tbody>
       <c:forEach items="${list}" var="po">
-		<c:url var="url" value="/post/content"> 
-			<c:param name="po_id" value="${po.po_id}"/> 
-		</c:url>
-      
+     
       <tr>
-        <td>${po.po_id}</td>
-        <td><a style="color: black;" class="nav" href="${url}">${po.po_name}</a></td>
+         <td>${po.po_id}</td> <!--: 실제 게시글 번호  -->
+        <!--<td>${pm.totalCount - vs.index - pm.cri.pageStart}</td> --> <!-- :현제 게시글번호 -->
+        <td><a style="color: black;" class="nav" href="<c:url value="/post/detail?po_id=${po.po_id}"/>">${po.po_name}</a></td>
         <td>${po.po_me_id}</td>
         <td>${po.po_date}</td>
         <td>${po.po_report}</td>
@@ -102,6 +119,8 @@
 		    </li>
 	    </c:if>
 	  </ul>
+	  
+	  <a href="<c:url value="/post/insert?co_id=${pm.cri.co_id}"/>" class="btn btn-outline-danger">게시글 등록</a>
   </div>
 </div>
 </body>

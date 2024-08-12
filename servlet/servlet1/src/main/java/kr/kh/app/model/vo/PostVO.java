@@ -18,5 +18,17 @@ public class PostVO {
 	private int po_view;
 	private int po_report;
 	
+	public PostVO(int co_id, String title, String content, String id) {
+		this.po_co_id = co_id;
+		this.po_name = title;
+		this.po_content = content;
+		this.po_me_id = id;
+	}
+
+	public PostVO(int po_id, String title, String content) {
+		this.po_id = po_id;
+		this.po_name = title;
+		this.po_content = content;
+	}
 	
 }

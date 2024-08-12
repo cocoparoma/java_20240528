@@ -36,6 +36,11 @@ public class PostList extends HttpServlet {
 			if (pageStr != null && pageStr.length() != 0) {
 				page = Integer.parseInt(pageStr);
 			}
+			
+			String type = request.getParameter("type");
+			String search = request.getParameter("search")
+;			
+			
 			// 커뮤니티 번호를 주면서 커뮤니티 정보를 가지고 오라고 시킴
 			CommunityVO community = postService.getCommunity(coId);
 			
@@ -43,7 +48,9 @@ public class PostList extends HttpServlet {
 				throw new Exception();
 			}
 			
-			Criteria cri = new PostCriteria(page, 2, "", coId);
+			
+			
+			Criteria cri = new PostCriteria(page, 2, search, coId ,type);
 			
 			PageMaker pm = postService.getPageMaker(cri, 2);
 			

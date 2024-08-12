@@ -20,4 +20,12 @@ public interface PostDAO {
 
 	PostVO getPost(@Param("po_id")int poId);
 
+	boolean insertPost(@Param("post")PostVO post);
+
+	boolean updatePost(@Param("post")PostVO post);
+
+	boolean deletePost(@Param("po_id")int po_id);
+
+	void updatePostView(@Param("po_id")int id);
+
 }
