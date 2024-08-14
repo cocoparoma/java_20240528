@@ -13,7 +13,16 @@
 	</select>
 
 	<select id="getPostList" resultType="PostVO">
-	select * from post where po_co_id = #{cri.co_id}
+	select
+		post.*,
+		count(if(re_state = 1, re_state, null)) po_up,
+		count(if(re_state = -1, re_state, null)) po_down
+	from 
+		post
+    LEFT JOIN
+		recommend ON po_id = re_po_id		
+	where
+		po_co_id = #{cri.co_id}
 	<if test="cri.type=='all'">
 	and ( po_name like concat('%','${cri.search}' , '%') or po_me_id = #{cri.search} )
 	</if>
@@ -25,7 +34,9 @@
 	<if test="cri.type=='id'">
 	and po_me_id = #{cri.search}
 	</if>
-	
+	GROUP BY po_id
+	order by po_id desc
+	limit #{cri.pageStart}, #{cri.perPageNum}
 	
 	</select>
 
@@ -43,7 +54,18 @@
 	</select>
 	
 	<select id="getPost" resultType="PostVO">
-	select * from post where po_id = #{po_id}
+	<!-- select * from post where po_id = #{po_id}  -->
+	select
+		post.*,
+		count(if(re_state = 1, re_state, null)) po_up,
+		count(if(re_state = -1, re_state, null)) po_down
+	FROM
+		post
+		    LEFT JOIN
+		recommend ON po_id = re_po_id
+		WHERE po_id = #{po_id}
+		GROUP BY po_id 
+	
 	</select>
 	
 	<insert id="insertPost">
@@ -65,5 +87,70 @@
 	delete from post where po_id = #{po_id}
 	</delete>
 
-
+	
+	<select id="selectRecommend" resultType="RecommendVO">
+	select * from recommend where re_po_id = #{re.re_po_id} and re_me_id = #{re.re_me_id}
+	</select>
+	
+	
+	<delete id="deleteRecommend">
+	delete from recommend where re_id = #{re_id}
+	</delete>
+	
+	
+	<insert id="insertRecommemd">
+	insert into recommend(re_state, re_po_id, re_me_id)
+	value(#{re.re_state} ,#{re.re_po_id} ,#{re.re_me_id})
+	</insert>
+	
+	
+	<select id="selectCommentList" resultType="CommentVO">
+	select * from comment where cm_po_id = #{cri.po_id}
+	order by cm_ori_id desc, cm_id asc
+	limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	
+	<select id="selectCommentTotalCount" resultType="int">
+	select count(*) from comment where cm_po_id = #{cri.po_id}
+	</select>
+	
+	
+	<insert id="insertComment">
+	insert into comment(cm_id, cm_content, cm_po_id, cm_ori_id, cm_me_id)
+	select
+		ifnull(max(cm_id), 0) + 1,
+		#{cm.cm_content},
+		#{cm.cm_po_id},
+	<choose>
+		<when test="cm.cm_ori_id == 0">ifnull(max(cm_id), 0) + 1,</when>
+		<otherwise>#{cm.cm_ori_id} </otherwise>
+	</choose>	
+		#{cm.cm_me_id}
+	from comment
+	</insert>
+	
+	<select id="selectComment" resultType="CommentVO">
+	select * from comment where cm_id = #{cm_id}
+	</select>
+		
+	<delete id="deleteComment">
+	delete from comment where cm_id = #{cm_id}
+	</delete>
+	
+	
+	<update id="updateComment">
+	update comment
+	set cm_content = #{cm.cm_content}
+	where cm_id = #{cm.cm_id}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

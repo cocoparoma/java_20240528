@@ -6,3 +6,6 @@
 java_HUH/.gitignore
 
 MANIFEST.FT
+
+
+*.jar

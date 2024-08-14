@@ -10,9 +10,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.app.dao.PostDAO;
+import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
+import kr.kh.app.model.vo.RecommendVO;
 import kr.kh.app.pagination.Criteria;
 import kr.kh.app.pagination.PageMaker;
 
@@ -193,6 +195,133 @@ public class PostServiceImp implements PostService{
 	@Override
 	public void updatePostView(int id) {
 		postDao.updatePostView(id);
+	}
+
+
+
+	@Override
+	public int insertRecommend(RecommendVO recommend) {
+		
+		if (recommend == null) {
+			throw new RuntimeException();
+		}
+		
+		RecommendVO DBcheck = postDao.selectRecommend(recommend);
+		
+		if (DBcheck == null) {
+			postDao.insertRecommemd(recommend);
+			
+			return recommend.getRe_state();
+		}
+		
+		
+		postDao.deleteRecommend(DBcheck.getRe_id());
+		
+		
+		if (DBcheck.getRe_state() == recommend.getRe_state()) {
+			
+			return 0;
+		}
+		
+		postDao.insertRecommemd(recommend);
+		return recommend.getRe_state();
+		
+		
+	}
+
+
+
+	@Override
+	public RecommendVO getRecommend(int po_id, MemberVO user) {
+		
+		if (user == null) {
+			return null;
+		}
+		
+		RecommendVO recommend = new RecommendVO(0, po_id , user.getMe_id());
+		
+		RecommendVO DBcheck = postDao.selectRecommend(recommend);
+		
+		return DBcheck;
+	}
+
+
+
+	@Override
+	public List<CommentVO> getCommentList(Criteria cri) {
+		if (cri == null) {
+			return null;
+		}
+		
+		return postDao.selectCommentList(cri);
+	}
+
+
+
+	@Override
+	public PageMaker getCommentPageMaker(Criteria cri) {
+		if (cri == null) {
+			return null;
+		}
+		int totalCount  = postDao.selectCommentTotalCount(cri);
+		
+		return new PageMaker(totalCount, 2, cri);
+	}
+
+
+
+	@Override
+	public boolean insertComment(CommentVO comment) {
+		if (comment == null) {
+			return false;
+		}
+		if (comment.getCm_content() == null || comment.getCm_content().length() == 0) {
+			return false;
+		}
+		return postDao.insertComment(comment);
+	}
+
+
+
+	@Override
+	public boolean deleteComment(int co_id, MemberVO user) {
+		if (user == null) {
+			return false;
+		}
+		CommentVO comment = postDao.selectComment(co_id);
+		
+		if (comment == null) {
+			return false;
+		}
+		
+		if (!comment.getCm_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		return postDao.deleteComment(co_id);
+	}
+
+
+
+	@Override
+	public boolean updateComment(CommentVO comment, MemberVO user) {
+		if (user == null || comment == null) {
+			return false;
+		}
+		
+		CommentVO dbComment = postDao.selectComment(comment.getCm_id());
+		System.out.println(dbComment);
+		if (dbComment == null) {
+			System.out.println("test1");
+			return false;
+		}
+		
+		if (!dbComment.getCm_me_id().equals(user.getMe_id())) {
+			System.out.println("test2");
+			return false;
+		}
+		
+	
+		return postDao.updateComment(comment);
 	}
 	
 }
