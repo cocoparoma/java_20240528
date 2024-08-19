@@ -1,12 +1,15 @@
 package kr.kh.app.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.PostVO;
 import kr.kh.app.model.vo.RecommendVO;
@@ -37,9 +40,14 @@ public class PostDetail extends HttpServlet {
 			MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 			RecommendVO recommend = postService.getRecommend(id, user);
 			
+			List<FileVO> fileList = postService.getFileList(id);
+			request.setAttribute("fileList", fileList);
+			
+			
 			
 			request.setAttribute("post", post);
 			request.setAttribute("re", recommend);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

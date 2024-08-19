@@ -2,10 +2,12 @@ package kr.kh.app.dao;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Param;
 
 import kr.kh.app.model.vo.CommentVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.PostVO;
 import kr.kh.app.model.vo.RecommendVO;
 import kr.kh.app.pagination.Criteria;
@@ -47,5 +49,15 @@ public interface PostDAO {
 	boolean deleteComment(@Param("cm_id")int co_id);
 
 	boolean updateComment(@Param("cm")CommentVO comment);
+
+	void insertFile(@Param("file")FileVO fileVO);
+
+	List<FileVO> selectFileList(@Param("po_id")int id);
+
+	FileVO selectFile(@Param("fi_id")int fi_id);
+
+	void deleteFile(@Param("fi_id")int fi_id);
+
+	boolean insertCommunity(@Param("co_name")String co_name);
 
 }

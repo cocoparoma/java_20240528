@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>community</title>
+<jsp:include page="/WEB-INF/views/common/head.jsp"/>
+<style type="text/css">
+	.list-community{
+		list-style: none; display: flex; flex-wrap: wrap;
+	}
+	.item-community{
+		width: 33.33%; height: 65px; box-sizing: border-box; padding: 10px;
+	}
+	.link-community{
+		display: block; border: 1px solid black; box-sizing: border-box;
+		height: 100%; text-align: center; text-align:center;
+		text-decoration: none; color: black;
+	}
+	.link-community:hover{
+		text-decoration: none; color: white; background-color: tomato;
+	}
+	
+</style>
+
+</head>
+<body>	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+	<div class="container">
+		<h1>커뮤니티 목록</h1>
+	</div>
+		
+	<div class="container" style="background-color: lightblue;">
+		<ul class="list-community">
+		<c:forEach items="${list}" var="community">
+			<li class="item-community">
+				<span class="link-community">
+					<span>${community.co_name}</span>
+					<button class="btn btn-outline-danger btn-update" data-id="${co.co_id }">수정</button>
+					<button class="btn btn-outline-dark btn-del" data-id="${co.co_id }">삭제</button>
+				</span>
+			</li>
+		</c:forEach>
+		</ul>
+		
+	<form class="input-group mb-3"  action="<c:url value="/admin/community/insert"/>" method="post">
+		<input type="text" class="form-control" name="co_name">
+		<div class="input-group-append">
+			<button type="submit" class="btn btn-outline-success">등록</button>
+		</div>
+	</form>
+	</div>	
+		
+</body>
+</html>
+
+

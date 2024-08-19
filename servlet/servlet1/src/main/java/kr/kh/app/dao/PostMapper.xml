@@ -68,7 +68,7 @@
 	
 	</select>
 	
-	<insert id="insertPost">
+	<insert id="insertPost" useGeneratedKeys="true" keyProperty="post.po_id">
 	insert into post(po_co_id, po_me_id, po_name, po_content)
 	values (#{post.po_co_id},#{post.po_me_id},#{post.po_name},#{post.po_content})
 	</insert>
@@ -145,11 +145,26 @@
 	where cm_id = #{cm.cm_id}
 	</update>
 	
+	<insert id="insertFile">
+	insert into file(fi_po_id, fi_name, fi_ori_name) 
+	value(#{file.fi_po_id}, #{file.fi_name}, #{file.fi_ori_name})
+	</insert>
 	
+	<select id="selectFileList" resultType="FileVO">
+	select * from file where fi_po_id = #{po_id}
+	</select>
 	
+	<select id="selectFile" resultType="FileVO">
+	select * from file where fi_id = #{fi_id}
+	</select>
 	
+	<delete id="deleteFile">
+	delete from file where fi_id = #{fi_id}
+	</delete>
 	
-	
+	<insert id="insertCommunity">
+	insert into community(co_name) value(#{co_name})
+	</insert>
 	
 	
 	
