@@ -166,6 +166,17 @@
 	insert into community(co_name) value(#{co_name})
 	</insert>
 	
+	<delete id="deleteCommunity">
+	delete from community where co_id = #{co_id}
+	</delete>
+	
+	<update id="updateCommunity">
+	update community
+	set co_name = #{co_name}
+	where co_id = #{co_id}
+	</update>
+	
+	
 	
 	
 </mapper>

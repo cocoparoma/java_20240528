@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.app.dao.PostDAO;
+import kr.kh.app.model.vo.MemberVO;
 
 public class AdminServiceImp implements AdminService{
 
@@ -39,6 +40,30 @@ public class AdminServiceImp implements AdminService{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+
+	@Override
+	public boolean deleteCommunity(int co_id, MemberVO admin) {
+		
+		if (admin == null || !admin.getMe_authority().equals("ADMIN")) {
+			return false;
+		}
+		
+		
+		//post = cascade
+		return postDao.deleteCommunity(co_id);
+	}
+
+
+	@Override
+	public boolean updateCommunity(int co_id, String co_name, MemberVO admin) {
+		if (admin == null || !admin.getMe_authority().equals("ADMIN")) {
+			return false;
+		}
+		
+		
+		return postDao.updateCommunity(co_id, co_name);
 	}
 
 	
