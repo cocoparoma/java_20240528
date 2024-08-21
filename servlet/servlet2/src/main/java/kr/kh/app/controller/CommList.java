@@ -25,7 +25,7 @@ public class CommList extends HttpServlet {
 		String type = request.getParameter("type");
 		String q = request.getParameter("q");//text임
 		
-		
+		//페이지네이션 해야함 도전하셈
 		
 		
 		
@@ -33,6 +33,9 @@ public class CommList extends HttpServlet {
 		System.out.println(comm); // 커뮤니티 정보까지 받아왔음
 		System.out.println(type); //검색타입
 		System.out.println(q); // 검색할 문자열
+		
+		
+		// 들어갈 내용 co_id, type, q, startPage, endPage, limit개수, nowPage까지
 //		List<PostVO> list = postService.getPostList();
 		
 		
