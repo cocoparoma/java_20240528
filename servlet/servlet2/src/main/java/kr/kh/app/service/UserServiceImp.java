@@ -104,19 +104,27 @@ public class UserServiceImp implements UserService {
 			return null;
 		}
 		
+		// 아이디가 있는지 확인(아이디만!)
 		UserVO user = findUserByID(userDto.getMe_id());
 		
-		//가져온 유저정보
-//		System.out.println(user);
+		// 가져온 유저정보 -> 아이디가 없으면 null
+		System.out.println(user);
 		if (user == null) {
 			return null;
 		}
 		
+		// 가져온 유저정보의 비번을 확인
 		if (!user.getMe_pw().equals(userDto.getMe_pw())) {
 			return null;
 		}
 		
+		// 사용 상태인지 확인
 		if (!user.getMe_ms_name().equals("사용")) {
+			return null;
+		}
+		
+		// 아이디 실패 횟수가 5보다 크면
+		if (user.getMe_fail() > 5) {
 			return null;
 		}
 
@@ -129,6 +137,16 @@ public class UserServiceImp implements UserService {
 	public UserVO findUserByID(String me_id) {
 		
 		return userDao.findUserByID(me_id);
+	}
+
+	@Override
+	public void idFailAdd1(UserVO user) {
+		userDao.idFailAdd1(user);
+	}
+
+	@Override
+	public void idSuccessFailReturnZero(UserVO user) {
+		userDao.idSuccessFailReturnZero(user);
 	}
 	
 	

@@ -41,18 +41,29 @@ public class Login extends HttpServlet {
 		// 유저 정보 확인
 		UserVO user = userService.getUser(userDto);
 
-		//유저가 존재하면
+		// 유저가 존재하면
 		if (user != null) {
 			request.setAttribute("msg", "안녕하세요, "+ user.getMe_id() + "님 접속을 환영합니다.");
 			request.setAttribute("url", "/");
 			
-			//세션에 저장해야함 - 로그인토큰 
-			//UserVO user 를 user라는 이름으로 세션에 저장 (전방향 사용가능한 Static 같음)
+			// 세션에 저장해야함 - 로그인토큰 
+			// UserVO user 를 user라는 이름으로 세션에 저장 (전방향 사용가능한 Static 같음)
+			userService.idSuccessFailReturnZero(user);
+			
 			request.getSession().setAttribute("user", user);
 		} else {
+			// 실패시 + 아이디가 있는데 실패시
+			UserVO userVO = userService.findUserByID(me_id);
 			
-			request.setAttribute("msg", "로그인에 실패하였습니다. 아이디와 비밀번호를 확인해 주세요");
-			request.setAttribute("url", "/login");
+			if (userVO != null) {
+				userService.idFailAdd1(userVO);
+				request.setAttribute("msg", "로그인에 실패하였습니다. 비밀번호를 확인해 주세요");
+				request.setAttribute("url", "/login");
+			} else {
+				request.setAttribute("msg", "로그인에 실패하였습니다. 아이디와 비밀번호를 확인해 주세요");
+				request.setAttribute("url", "/login");
+			}
+			
 			
 		}
 		

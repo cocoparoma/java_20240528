@@ -34,7 +34,7 @@
 		  <label for="email">이메일:</label>
 		  <input type="text" class="form-control" id="email" name="me_email">
 		</div>
-		<input type="hidden" id="idcheck" name="id_ch">
+		<input type="hidden" class="form-control" id="idcheck" name="id_ch">
 		 <div class="d-flex flex-row-reverse">
 	   		<button class="p-2 btn btn-signup bg-primary" type="submit">회원가입</button>
 		 </div>
@@ -162,11 +162,15 @@ function call_confirm() {
 function call_ajax_server_id_check() {
 	alert('idc')
 	
-	$('#idcheck').val('good');
+	$("#idcheck").val('good');
 	var str = $('#idcheck').val();
 	console.log(str);
 	
 }
+
+$(".btn-signup").click(function(e) {
+	document.getElementById('id').disabled = false;
+});
 </script>
 
 	

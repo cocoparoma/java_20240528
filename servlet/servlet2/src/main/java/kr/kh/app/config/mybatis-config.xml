@@ -10,7 +10,8 @@
 	</settings>
 	
 	<typeAliases>
-		<package name="kr.kh.app.model.vo"/>
+	<!-- .vo 빠졌음 model까지만 작성했음 근대 됨... 왜? -->
+		<package name="kr.kh.app.model"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -27,5 +28,6 @@
 	
 	<mappers>
 		<mapper resource="kr/kh/app/dao/UserMapper.xml"/>
+		<mapper resource="kr/kh/app/dao/PostMapper.xml"/>
 	</mappers>
 </configuration>

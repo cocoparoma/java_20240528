@@ -11,4 +11,8 @@ public interface UserService {
 	UserVO getUser(LoginDTO userDto);
 	
 	UserVO findUserByID(String me_id);
+
+	void idFailAdd1(UserVO userVO);
+
+	void idSuccessFailReturnZero(UserVO user);
 }

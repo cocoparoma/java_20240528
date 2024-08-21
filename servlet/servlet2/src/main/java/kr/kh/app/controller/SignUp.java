@@ -43,10 +43,10 @@ public class SignUp extends HttpServlet {
 		}
 		
 		// input var
-//		System.out.println("id : "+me_id);
-//		System.out.println("pw : "+me_pw);
-//		System.out.println("pw2 : "+me_pw2);
-//		System.out.println("email : "+me_email);
+		System.out.println("id : "+me_id);
+		System.out.println("pw : "+me_pw);
+		System.out.println("pw2 : "+me_pw2);
+		System.out.println("email : "+me_email);
 		
 		
 		

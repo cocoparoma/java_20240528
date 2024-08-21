@@ -29,6 +29,8 @@ public class CheckId extends HttpServlet {
 		
 		UserVO user = userService.findUserByID(me_id);
 		
+		
+		//결과만 말해줄 result
 		boolean res = false;
 		
 		if (user == null) {

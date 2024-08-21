@@ -12,5 +12,12 @@
 	<select id="findUserByID" resultType="UserVO">
 	select * from member where me_id = #{me_id}
 	</select>
-
+	
+	<update id="idFailAdd1">
+	update member set me_fail = me_fail + 1 where me_id = #{user.me_id}
+	</update>
+	
+	<update id="idSuccessFailReturnZero">
+	update member set me_fail = 0 where me_id = #{user.me_id}
+	</update>
 </mapper>

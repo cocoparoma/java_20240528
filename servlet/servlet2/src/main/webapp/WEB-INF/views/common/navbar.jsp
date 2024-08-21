@@ -7,8 +7,29 @@
   <ul class="navbar-nav">
   
     <li class="nav-item active">
-      <a class="nav-link" href="<c:url value="/"/>">Home</a>
+      <a class="nav-link" href="<c:url value="/"/>">Main</a>
     </li>
+   
+  	<!-- 실질적으로 커뮤니티(아카이브) 고르는 곳 comm으로 커뮤니티는 줄여 표현할 것 -->
+    <li class="nav-item">
+      <a class="nav-link" href="<c:url value="/comm"/>">아카이브</a>
+    </li>
+    
+    
+    
+    <li class="nav-item">
+      <a class="nav-link" href="<c:url value="/"/>">파일 다운로드</a>
+    </li>
+    
+  
+  
+  
+    <li class="nav-item">
+      <a class="nav-link" href="<c:url value="/"/>">Q&A문의소</a>
+    </li>
+    
+  
+   
     
 <c:choose>
 <c:when test="${user==null}">
@@ -47,7 +68,7 @@
 
 
     <li class="nav-item">
-      <a class="nav-link disabled" href="#">Disabled</a>
+      <a class="nav-link disabled" href="#">LogoH</a>
     </li>
     
     

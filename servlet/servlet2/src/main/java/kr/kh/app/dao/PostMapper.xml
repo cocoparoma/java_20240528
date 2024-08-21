@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.kh.app.dao.PostDAO">
+
+	<select id="getCommVOList" resultType="CommVO">
+	select * from community
+	</select>
+
+	<select id="getCommDTOList" resultType="CommListDTO">
+	SELECT community.*, count(po_co_id) co_postCounter FROM community LEFT join post on co_id = po_co_id GROUP BY co_id
+	</select>
+	
+	<select id="getComm" resultType="CommVO">
+	select * from community where co_id = #{co_id}
+	</select>
+</mapper>
