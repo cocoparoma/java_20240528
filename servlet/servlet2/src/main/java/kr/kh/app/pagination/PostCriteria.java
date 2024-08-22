@@ -3,17 +3,24 @@ package kr.kh.app.pagination;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 public class PostCriteria extends Criteria {
 
-	private int co_id;
-	private String type;
+	private String co_id;
+	private String type="";
 	
-	public PostCriteria(int page, int perPageNum, String search, int co_id, String type) {
-		super(page, perPageNum, search);
+	public PostCriteria(String co_id, String pageStr, String search, String type, int perPageNum) {
+		int page;
+		try {
+			page = Integer.parseInt(pageStr);
+		}catch(Exception e) {
+			page = 1;
+		}
+		this.search = search == null ? "" : search;
+		this.type = type == null ? "" : type;
 		this.co_id = co_id;
-		this.type  = type;
+		this.page = page;
+		this.perPageNum = perPageNum;
 	}
 }

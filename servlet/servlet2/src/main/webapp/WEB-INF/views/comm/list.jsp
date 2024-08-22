@@ -6,7 +6,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>list</title>
+	<title>Page List</title>
 	<jsp:include page="/WEB-INF/views/common/cdn.jsp"></jsp:include>
 	</head>
 	<body>
@@ -15,15 +15,37 @@
 	
 	
 		<div class="container mt-3">
-		  <h2>${co.co_name }</h2>
-		  <p>${co.co_name } 게시판 리스트 (여기다가 user state 띄워도 좋을 듯)</p>
+		
+<!-- title -->
+			<h2>${co.co_name }</h2>
+		  	
+		  	<c:choose>
+		  		
+		  		
+		  		<c:when test="${user != null}">
+		  			<p>${co.co_name } 게시판 입니다. ${user.me_id} 님 반갑습니다.</p>
+		  		</c:when>
+		  		
+		  		
+		  		<c:otherwise>
+		  			<p>${co.co_name } 게시판 입니다. 로그인 되지 않았습니다. 로그인 후 이용해 주세요</p>
+		  		</c:otherwise>
+		  		
+		  		
+		  	</c:choose>
+		  
+
+			
+<!-- test -->
+
+
 
 <!--  -->
 
 		  <div class="list-group">
 				
 				<div class="list-group-item d-flex justify-content-between align-items-center">
-					제목
+					게시글 제목
 				      <span class="">
 				      
 				      		<span class="badge badge-info badge-pill">년월일자</span>
@@ -32,27 +54,11 @@
 				      		<span class="badge badge-primary badge-pill">조회수</span>
 				      </span>
 				</div>
-		    	<div class="list-group-item list-append" style="border-left: 0px; border-right: 0px"></div>
+		    	<div class="list-group-item list-add" style="border-left: 0px; border-right: 0px"></div>
 		    	
-<!-- 리스트 추가 위치 -->
 		    	
-		        <a class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" href="#">
-				      
-					게시글 제목이 있을 위치
-				      
-				      <span class="">
-				      
-				      		<span class="badge badge-info badge-pill">
-				      		
-				      		<fmt:formatDate value=""/>
-				      		년월일자
-				      		
-				      		</span>
-				   			<span class="badge badge-success badge-pill">작성자</span>
-				   			<span class="badge badge-danger badge-pill">추천</span>
-				      		<span class="badge badge-primary badge-pill">12</span>
-				      </span>
-			    </a>
+<!-- 리스트 추가 위치 + 추가 되었음-->
+		    	
 		    
 		  	</div>
 		  	
@@ -61,10 +67,23 @@
 
 </div><!-- container done -->
 	
+<!-- insert butten -->	
+	
+	
+<div class="container">
+	<div class="d-flex justify-content-between mb-3">
+		<div class="btn btn-insertPost badge badge-danger badge-pill" style="font-size: 25px;">게시글 작성</div>
+		<div class="btn btn-back badge badge-info badge-pill" style="font-size: 25px;">뒤로</div>
+	</div>
+</div>
+	
+	
+	
+	
 
 <!-- 검색창 아래 위치하도록 만들었음 -->
 
-		<div class="container mt-3">
+		<div class="container">
 			<form>
 				<div class="input-group mt-3 mb-3">
 					<div class="input-group-prepend">
@@ -89,10 +108,22 @@
 		
 	<div class="container">
 	  <ul class="pagination justify-content-center">
-	    <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+	  
+	  
+	  
+	    <li class="page-item page-after-point"><a class="page-link" href="javascript:void(0);">이전</a></li>
+	  
+	  
+	  
 	    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-	    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-	    <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+	  
+	  
+	  
+	    <li class="page-item"><a class="page-link" href="javascript:void(0);">이후</a></li>
+	  
+	  
+	  
+	  
 	  </ul>
 	</div>
 	
@@ -106,13 +137,48 @@
 
 <script type="text/javascript">
 //변수 선언 부
-let co_id = `${co.co_id}`;
+let co_id;
 let searchType = "all"; // 타입(디폴트 전체)
 let searchText = ""; // 찾는 문구 (기본 없음)
 let searchTerm = ""; // 기간(디폴트 전체기간)
+let page = "";
 const tmp = $('.search-bounds').text();
 
-var str = ``
+var str = `
+<c:forEach var="po" items="${list}">
+
+
+
+    <a class="list-group-item d-flex justify-content-between align-items-center list-group-item-action"
+    href="<c:url value="/comm/detail?co_id=${co.co_id}&po_id=${po.po_id}"/>">
+    
+	${po.po_name}
+
+	<span class="">
+      
+      		<span class="badge badge-info badge-pill">
+      		
+      		<fmt:formatDate value="${po.po_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+      		
+      		</span>
+   			<span class="badge badge-success badge-pill">${po.po_me_id}</span>
+   			<span class="badge badge-danger badge-pill">${po.po_up}</span>
+      		<span class="badge badge-primary badge-pill">${po.po_view}</span>
+      		
+      </span>
+</a>
+</c:forEach>
+<c:if test="${list.size() == 0 }">
+<a class="list-group-item d-flex flex-column-reverse align-items-center list-group-item-action"
+    href="javascript:void(0);">
+    
+	<span class="p-2 bg-info badge badge-info badge-pill">게시글이 없습니다!</span>
+
+</a>
+</c:if>
+
+
+`
 
 
 
@@ -137,8 +203,23 @@ $('.search-bounds-name').click(function (e) {
 });
 $('.btn-search').click(function (e) {
 	searchText = $('.search-text').val();
+	co_id = `${co.co_id}`;
 	search();
 });
+$('.btn-back').click(function (e) {
+	window.location.href = `<c:url value="/comm"/>`;
+})
+$('.btn-insertPost').click(function (e) {
+	window.location.href = `<c:url value="/comm/insert?co_id=${co.co_id}"/>`;
+})
+
+/*
+$(document).on('click', '.page-item',function(e) {
+    e.stopImmediatePropagation();
+    page = $('this').val();
+    alert(page);
+ }); 
+*/
 
 //함수 선언 부
 function search() {
@@ -150,9 +231,10 @@ function search() {
 	console.log(searchText)
 	window.location.href = `<c:url value="/comm/list?co_id=\${co_id}&type=\${searchType}&q=\${searchText}"/>`;
 }
-
+postMaker();
 function postMaker() {
-	
+	$('.list-add').after(str);
+	console.log(str);
 }
 
 function pageMaker() {

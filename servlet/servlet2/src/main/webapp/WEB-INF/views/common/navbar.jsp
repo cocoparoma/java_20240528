@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- user 정보는 로그인 시 세션에서 뿌리게 되었음 user 사용 가능함 -->
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark d-flex justify-content-center" style="font-size: 20px">
   <ul class="navbar-nav">
   
     <li class="nav-item active">

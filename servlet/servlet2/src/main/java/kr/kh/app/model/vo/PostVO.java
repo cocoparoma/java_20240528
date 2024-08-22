@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostVO {
 	
+
 	private int po_id;
 	private String po_name;
 	private String po_content;
@@ -20,4 +21,33 @@ public class PostVO {
 	private int po_up;
 	private int po_down;
 
+	
+	//사용처 : comm/insert
+	public PostVO(String po_name, String po_content, String me_id, int co_id) {
+		this.po_name = po_name;
+		this.po_content = po_content;
+		this.po_me_id = me_id;
+		this.po_co_id = co_id;
+	}
+
+	//사용처 : comm/update
+	public PostVO(int po_id, String po_name, String po_content) {
+		this.po_id = po_id;
+		this.po_name = po_name;
+		this.po_content = po_content;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

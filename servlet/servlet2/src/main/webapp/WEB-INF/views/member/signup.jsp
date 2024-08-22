@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>SignUp</title>
 <jsp:include page="/WEB-INF/views/common/cdn.jsp"></jsp:include>
 
 </head>
