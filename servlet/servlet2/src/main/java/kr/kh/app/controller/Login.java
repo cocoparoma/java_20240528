@@ -3,6 +3,7 @@ package kr.kh.app.controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,16 @@ public class Login extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 로그인 페이지 오기 전 url 가져옴
+		String url = request.getHeader("Referer");
+		
+		
+		
+		if(url != null && !url.contains("/login")) {
+			request.getSession().setAttribute("prevUrl", url);
+		}
+		
+		
 		
 		request.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(request, response);
 	}
@@ -49,8 +60,20 @@ public class Login extends HttpServlet {
 			// 세션에 저장해야함 - 로그인토큰 
 			// UserVO user 를 user라는 이름으로 세션에 저장 (전방향 사용가능한 Static 같음)
 			userService.idSuccessFailReturnZero(user);
-			
 			request.getSession().setAttribute("user", user);
+			
+			
+			String auto = request.getParameter("auto");
+			System.out.println(auto);
+			if (auto != null && auto.equals("true")) {
+			    Cookie cookie = userService.setAutoLoginCookie(user,request);
+			    response.addCookie(cookie);
+			}
+			
+			
+			
+			
+			
 		} else {
 			// 실패시 + 아이디가 있는데 실패시
 			UserVO userVO = userService.findUserByID(me_id);

@@ -14,7 +14,7 @@ import kr.kh.app.model.vo.UserVO;
 
 
 // 아래 해당하는 url 접속시 필터 작동 "" , 식으로 콤마로 이어가도록 함
-@WebFilter({"/comm/insert", "/comm/update"})
+@WebFilter({"/comm/insert", "/comm/update", "/comm/delete"})
 public class UserFilter extends HttpFilter implements Filter {
        
 

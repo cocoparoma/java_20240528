@@ -20,4 +20,18 @@
 	<update id="idSuccessFailReturnZero">
 	update member set me_fail = 0 where me_id = #{user.me_id}
 	</update>
+	
+	<update id="setUserCookie">
+	update member
+	set
+		me_cookie = #{user.me_cookie},
+		me_limit = #{user.me_limit}
+	where
+		me_id = #{user.me_id}
+	</update>
+	
+	<select id="selectMemberBySid" resultType="UserVO">	
+		select * from member where me_cookie = #{sid} and me_limit > now()
+	</select>
+	
 </mapper>

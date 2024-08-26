@@ -5,6 +5,7 @@ import java.util.List;
 import kr.kh.app.model.dto.CommListDTO;
 import kr.kh.app.model.vo.CommVO;
 import kr.kh.app.model.vo.PostVO;
+import kr.kh.app.model.vo.UserVO;
 import kr.kh.app.pagination.Criteria;
 import kr.kh.app.pagination.PageMaker;
 
@@ -27,6 +28,8 @@ public interface PostService {
 	void addViewPoint(int po_id);
 
 	boolean modifyPost(PostVO post_new);
+
+	boolean removePost(PostVO post, UserVO user);
 
 
 }

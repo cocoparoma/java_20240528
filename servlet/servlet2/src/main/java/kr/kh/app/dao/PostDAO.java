@@ -29,4 +29,6 @@ public interface PostDAO {
 
 	boolean modPost(@Param("po")PostVO post);
 
+	boolean removePost(@Param("po_id")int po_id);
+
 }

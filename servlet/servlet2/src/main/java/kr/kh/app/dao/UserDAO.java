@@ -15,4 +15,8 @@ public interface UserDAO {
 
 	void idSuccessFailReturnZero(@Param("user")UserVO user);
 
+	void setUserCookie(@Param("user")UserVO user);
+
+	UserVO selectMemberBySid(@Param("sid")String sid);
+
 }

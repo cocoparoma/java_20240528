@@ -14,6 +14,7 @@ import kr.kh.app.dao.PostDAO;
 import kr.kh.app.model.dto.CommListDTO;
 import kr.kh.app.model.vo.CommVO;
 import kr.kh.app.model.vo.PostVO;
+import kr.kh.app.model.vo.UserVO;
 import kr.kh.app.pagination.Criteria;
 import kr.kh.app.pagination.PageMaker;
 
@@ -122,6 +123,29 @@ public class PostServiceImp implements PostService {
 			System.out.println("post Update postServiceImp err");
 			return false;
 		}
+	}
+
+	@Override
+	public boolean removePost(PostVO post, UserVO user) {
+		if (post == null) {
+			return false;
+		}
+		
+		if (post.getPo_id() == 0) {
+			return false;
+		}
+		
+		if (user == null) {
+			return false;
+		}
+
+		if (!post.getPo_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		
+		
+		
+		return postDao.removePost(post.getPo_id());
 	}
 	
 	

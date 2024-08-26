@@ -1,6 +1,7 @@
 package kr.kh.app.model.vo;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

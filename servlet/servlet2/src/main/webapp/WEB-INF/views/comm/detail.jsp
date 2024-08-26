@@ -23,6 +23,12 @@
 
 <!--  -->
 <!-- 들어가야 할것추천+/- -->
+<c:if test="${post != null }">
+<c:if test="${post == null }">
+	<h3>삭제되거나 등록되지 않은 게시글 입니다.</h3>
+</c:if>
+
+
 <div class="container mt-3 p-3">
   <h1>${post.po_name } </h1>
   <div class="p-2 d-flex flex-row-reverse">
@@ -50,14 +56,14 @@
 
 
 
-<div class="d-flex justify-content-between mb-3">
-	  	<button class="btn btn-modify badge badge-danger badge-pill" style="font-size: 25px;">수정</button>
-	  	<button class="btn badge btn-outline-success badge-pill" style="font-size: 25px;">추천 ${post.po_up}</button>
-	    <button class="btn btn-back badge badge-info badge-pill" style="font-size: 25px;">뒤로</button>
+<div class="d-flex  mb-3">
+	  	<button class="btn btn-modify badge badge-success badge-pill" style="font-size: 25px;">수정</button>
+	  	<button class="btn btn-delete badge btn-outline-danger badge-pill" style="font-size: 25px;">삭제</button>
+	    <button class="btn btn-back badge badge-info badge-pill ml-auto" style="font-size: 25px;">뒤로</button>
 </div>
 
 
-
+</c:if>
 </div>
 <jsp:include page="/WEB-INF/views/common/jumbotron.jsp"></jsp:include>
 <!--  script  -->	
@@ -88,9 +94,21 @@ $('.btn-writer').click(function (e) {
 	window.location.href = `<c:url value="/comm/list?co_id=${co_id}&type=name&q=${post.po_me_id}"/>`;
 })
 $('.btn-modify').click(function (e) {
-	window.location.href = `<c:url value="/comm/update?co_id=${co_id}&po_id=${post.po_id}"/>`;
+	if(${user.me_id == post.po_me_id}){
+		window.location.href = `<c:url value="/comm/update?co_id=${co_id}&po_id=${post.po_id}"/>`;
+	} else {
+		alert("작성자가 아닙니다.")
+	}
 })
-btn-modify
+$('.btn-delete').click(function (e) {
+	if(${user.me_id == post.po_me_id}){
+		window.location.href = `<c:url value="/comm/delete?co_id=${co_id}&po_id=${post.po_id}"/>`;
+	} else {
+		alert("작성자가 아닙니다.")
+	}
+})
+
+
 
 
 </script>

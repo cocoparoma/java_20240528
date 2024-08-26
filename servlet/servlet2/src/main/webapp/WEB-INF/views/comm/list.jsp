@@ -111,15 +111,7 @@
 	  
 	  
 	  
-	    <li class="page-item page-after-point"><a class="page-link" href="javascript:void(0);">이전</a></li>
-	  
-	  
-	  
-	    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-	  
-	  
-	  
-	    <li class="page-item"><a class="page-link" href="javascript:void(0);">이후</a></li>
+
 	  
 	  
 	  
@@ -146,6 +138,7 @@ const tmp = $('.search-bounds').text();
 
 var str = `
 <c:forEach var="po" items="${list}">
+
 
 
 
@@ -176,9 +169,24 @@ var str = `
 
 </a>
 </c:if>
+`
 
+var pageBar = `
+
+	<li class="page-item page-after-point disabled"><a class="page-link" href="javascript:void(0);">이전</a></li>
+	  
+  	<c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="i">
+  
+   		<li class="page-item"><a class="page-link btn-page" href="<c:url value="/comm/list?co_id=${co_id}&type=${searchType}&q=${searchText}&page=${i}"/>">${i }</a></li>
+  
+  	</c:forEach>
+  
+    <li class="page-item"><a class="page-link" href="javascript:void(0);">이후</a></li>
 
 `
+
+
+
 
 
 
@@ -212,6 +220,10 @@ $('.btn-back').click(function (e) {
 $('.btn-insertPost').click(function (e) {
 	window.location.href = `<c:url value="/comm/insert?co_id=${co.co_id}"/>`;
 })
+$(document).on('click', '.btn-page', function (e) {
+    e.stopImmediatePropagation();
+    
+})
 
 /*
 $(document).on('click', '.page-item',function(e) {
@@ -223,22 +235,15 @@ $(document).on('click', '.page-item',function(e) {
 
 //함수 선언 부
 function search() {
-	//ajax 로 searchType, searchText만 일단 보내주자 (기간 아직 안만듬)
-	//get으로 넘겨줘 버린듯?
-	//Mapper 까지 넘겨서 sql로 list걸러서 가져오게 해주면 됨
-	console.log(co_id)
-	console.log(searchType)
-	console.log(searchText)
-	window.location.href = `<c:url value="/comm/list?co_id=\${co_id}&type=\${searchType}&q=\${searchText}"/>`;
+	window.location.href = `<c:url value="/comm/list?co_id=\${co_id}&type=\${searchType}&q=\${searchText}&page=1"/>`;
 }
 postMaker();
 function postMaker() {
 	$('.list-add').after(str);
-	console.log(str);
 }
-
+pageMaker();
 function pageMaker() {
-	
+	$('.pagination').append(pageBar);
 }
 
 </script>

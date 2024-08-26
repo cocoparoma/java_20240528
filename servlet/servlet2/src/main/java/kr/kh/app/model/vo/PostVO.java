@@ -36,6 +36,15 @@ public class PostVO {
 		this.po_name = po_name;
 		this.po_content = po_content;
 	}
+
+	public PostVO(String po_id, String me_id) {
+		try {
+			this.po_id = Integer.parseInt(po_id);
+		} catch (Exception e) {
+			this.po_id = 0;
+		}
+		this.po_me_id = me_id;
+	}
 	
 	
 	

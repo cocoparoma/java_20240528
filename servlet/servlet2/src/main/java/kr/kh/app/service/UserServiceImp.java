@@ -2,7 +2,12 @@ package kr.kh.app.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.regex.Pattern;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -147,6 +152,40 @@ public class UserServiceImp implements UserService {
 	@Override
 	public void idSuccessFailReturnZero(UserVO user) {
 		userDao.idSuccessFailReturnZero(user);
+	}
+
+	@Override
+	public Cookie setAutoLoginCookie(UserVO user, HttpServletRequest request) {
+		if (user == null) {
+			return null;
+		}
+		
+		HttpSession session = request.getSession();
+		// 쿠키 : 이름, 값, 만료시간, path 가 요구됨
+		String me_cookie = session.getId();
+		
+		// 쿠키 이름 : AL , 값 : 현제 세션 아이디 값
+		Cookie cookie = new Cookie("AL", me_cookie);
+		cookie.setPath("/");
+		int time = 60 * 60 * 24 * 7; // 1주일
+		cookie.setMaxAge(time);
+		user.setMe_cookie(me_cookie);
+		
+		Date date = new Date(System.currentTimeMillis() + (time * 1000));
+		
+		user.setMe_limit(date);
+		userDao.setUserCookie(user);
+		return cookie;
+	}
+
+	@Override
+	public UserVO getMemberBySid(String sid) {
+		return userDao.selectMemberBySid(sid);
+	}
+
+	@Override
+	public void updateMemberCookie(UserVO user) {
+		userDao.setUserCookie(user);
 	}
 	
 	
