@@ -1,46 +1,68 @@
 package kr.kh.study2.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import kr.kh.study2.dao.PostDAO;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private PostDAO postDao;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	
+	@GetMapping("/")
+	public String home(Model mo) {
+		//DB연동 확인용
+		System.out.println("DB동작 여부 판별 : " + postDao.count());
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		//암호화 동작 여부
+		String str = "test";
+		String enc = passwordEncoder.encode(str);
 		
-		String formattedDate = dateFormat.format(date);
+		System.out.println("암호화 이전 문자열 : " + str);
+		System.out.println("암호화 된 문자열 : " + enc);
+		System.out.println("암호화 된 문자열 일치 여부(abc) :" + passwordEncoder.matches("abc", enc));
+		System.out.println("암호화 된 문자열 일치 여부(test) :" + passwordEncoder.matches("test", enc));
 		
-		System.out.println(postDao.count());
-		
-		model.addAttribute("serverTime", formattedDate );
 		return "/home";
 	}
+	
+	@GetMapping("/post/list")
+	public String postList(Model mo) {
+		//DB연동 확인용
+		System.out.println(postDao.count());
+		return "/home";
+	}
+	
+	@GetMapping("/post/detail")
+	public String postDetail(Model mo) {
+		//DB연동 확인용
+		System.out.println(postDao.count());
+		return "/home";
+	}
+	
+	
+	@GetMapping("/post/insert")
+	public String postInsert(Model mo) {
+		//DB연동 확인용
+		System.out.println(postDao.count());
+		return "/home";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
