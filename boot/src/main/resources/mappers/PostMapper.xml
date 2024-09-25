@@ -5,4 +5,31 @@
     <select id="count" resultType="int">
     select count(*) from post
     </select>
+    
+    <select id="selectPostList" resultType="PostVO">
+    select * from post where po_co_id = #{co_id}
+    order by po_id desc
+    limit #{pageStart}, #{perPageNum}
+    </select>
+
+	<select id="getCommunityList" resultType="CommunityVO">
+	select * from community
+	</select>
+	
+	<select id="selectCountPostList" resultType="int">
+	select count(*) from post where po_co_id = #{co_id}
+	</select>
+	
+	<select id="getPostById" resultType="PostVO">
+	select * from post where po_id = #{po_id}
+	</select>
+	
+	<update id="addPostViewPoint">
+	update post
+	set 
+		po_view = po_view + 1
+	where
+		po_id = #{po_id}
+	</update>
+	
 </mapper>
